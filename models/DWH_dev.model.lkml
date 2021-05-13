@@ -3,12 +3,10 @@ connection: "bq_photomath_dwh_dev"
 # include all the views
 include: "/views/**/*.view"
 
-datagroup: p_dwh_dev_default_datagroup {
+datagroup: photomath_dwh_dev_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
-
-persist_with: p_dwh_dev_default_datagroup
 
 explore: d_book {}
 
