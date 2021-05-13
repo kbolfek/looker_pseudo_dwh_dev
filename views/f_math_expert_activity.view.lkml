@@ -41,10 +41,10 @@ view: f_math_expert_activity {
     sql: ${TABLE}.ACTIVITY_STARTED_DT ;;
   }
 
-  dimension: expert_job_id {
+  dimension: math_expert_job_id {
     type: number
     description: "Foreign key to D_EXPERT_JOB. Which job is being tackled"
-    sql: ${TABLE}.EXPERT_JOB_ID ;;
+    sql: ${TABLE}.MATH_EXPERT_JOB_ID ;;
   }
 
   dimension: math_area {
