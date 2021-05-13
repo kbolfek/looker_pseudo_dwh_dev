@@ -8,7 +8,7 @@ datagroup: photomath_dwh_dev_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-persist_with: photomath_dwh_dev_default_datagroup
+#persist_with: photomath_dwh_dev_default_datagroup
 
 explore: d_book {}
 
