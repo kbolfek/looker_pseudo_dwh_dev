@@ -40,6 +40,20 @@ view: d_math_task {
     sql: ${TABLE}.COMPLETED_DT ;;
   }
 
+  dimension_group: created_dt {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.CREATED_DT ;;
+  }
+
   dimension: expression {
     type: string
     description: "Math expression of the task"
