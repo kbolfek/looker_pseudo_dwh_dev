@@ -24,6 +24,7 @@ view: d_math_area_expert {
   }
 
   dimension: math_expert_id {
+    primary_key: yes
     type: number
     description: "Foreign key to table D_MATH_EXPERT"
     sql: ${TABLE}.MATH_EXPERT_ID ;;

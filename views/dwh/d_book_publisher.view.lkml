@@ -3,6 +3,7 @@ view: d_book_publisher {
     ;;
 
   dimension: book_publisher_id {
+    primary_key: yes
     type: number
     description: "Surrogate key of a book publisher created by the source database"
     sql: ${TABLE}.BOOK_PUBLISHER_ID ;;

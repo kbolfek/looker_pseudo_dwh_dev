@@ -3,6 +3,7 @@ view: d_book_group {
     ;;
 
   dimension: book_group_id {
+    primary_key: yes
     type: number
     description: "Surrogate key of a book group created by the source database"
     sql: ${TABLE}.BOOK_GROUP_ID ;;

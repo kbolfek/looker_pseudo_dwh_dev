@@ -58,6 +58,7 @@ view: d_math_task {
   }
 
   dimension: math_task_id {
+    primary_key: yes
     type: number
     description: "Surrogate key of a math task created by the source database"
     sql: ${TABLE}.MATH_TASK_ID ;;

@@ -3,6 +3,7 @@ view: d_book_chapter {
     ;;
 
   dimension: book_chapter_id {
+    primary_key: yes
     type: number
     description: "Surrogate key of a book chapter created by the source database"
     sql: ${TABLE}.BOOK_CHAPTER_ID ;;

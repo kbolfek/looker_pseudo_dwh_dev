@@ -123,6 +123,7 @@ view: d_math_expert {
   }
 
   dimension: math_expert_id {
+    primary_key: yes
     type: number
     description: "Surrogate key of a math expert created by the source database"
     sql: ${TABLE}.MATH_EXPERT_ID ;;

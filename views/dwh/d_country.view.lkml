@@ -21,6 +21,7 @@ view: d_country {
   }
 
   dimension: country_id {
+    primary_key: yes
     type: number
     description: "Surrogate key of a country created by the source database"
     sql: ${TABLE}.COUNTRY_ID ;;

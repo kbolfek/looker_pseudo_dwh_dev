@@ -3,6 +3,7 @@ view: d_review_model {
     ;;
 
   dimension: review_model {
+    primary_key: yes
     type: string
     description: "Math task type"
     sql: ${TABLE}.REVIEW_MODEL ;;

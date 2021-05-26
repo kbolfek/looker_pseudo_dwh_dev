@@ -63,6 +63,7 @@ view: d_math_expert_comment {
   }
 
   dimension: math_expert_comment_id {
+    primary_key: yes
     type: number
     description: "Surrogate key of a comment created by the source database"
     sql: ${TABLE}.MATH_EXPERT_COMMENT_ID ;;

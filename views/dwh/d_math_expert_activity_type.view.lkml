@@ -3,6 +3,7 @@ view: d_math_expert_activity_type {
     ;;
 
   dimension: math_expert_activity_type {
+    primary_key: yes
     type: string
     description: "Type of activity happening on the platform, triggered by math expert taking on a job."
     sql: ${TABLE}.MATH_EXPERT_ACTIVITY_TYPE ;;

@@ -3,6 +3,7 @@ view: d_math_task_type {
     ;;
 
   dimension: math_task_type {
+    primary_key: yes
     type: string
     description: "Review model code"
     sql: ${TABLE}.MATH_TASK_TYPE ;;

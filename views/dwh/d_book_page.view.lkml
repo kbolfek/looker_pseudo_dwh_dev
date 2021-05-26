@@ -15,6 +15,7 @@ view: d_book_page {
   }
 
   dimension: book_page_id {
+    primary_key: yes
     type: number
     description: "Surrogate key of a book page created by the source database"
     sql: ${TABLE}.BOOK_PAGE_ID ;;

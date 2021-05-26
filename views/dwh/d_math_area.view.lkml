@@ -3,6 +3,7 @@ view: d_math_area {
     ;;
 
   dimension: math_area {
+    primary_key: yes
     type: string
     description: "Area of mathematics"
     sql: ${TABLE}.MATH_AREA ;;

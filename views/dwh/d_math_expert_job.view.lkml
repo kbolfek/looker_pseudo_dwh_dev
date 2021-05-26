@@ -65,6 +65,7 @@ view: d_math_expert_job {
   }
 
   dimension: math_expert_job_id {
+    primary_key: yes
     type: number
     description: "Surrogate key of a job created by the source database"
     sql: ${TABLE}.MATH_EXPERT_JOB_ID ;;

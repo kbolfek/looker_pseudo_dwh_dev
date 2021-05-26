@@ -54,6 +54,7 @@ view: f_math_expert_activity {
   }
 
   dimension: math_expert_activity_id {
+    primary_key: yes
     type: number
     description: "Surrogate key of a math expert activity created by the source database"
     sql: ${TABLE}.MATH_EXPERT_ACTIVITY_ID ;;

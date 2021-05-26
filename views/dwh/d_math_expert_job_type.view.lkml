@@ -3,6 +3,7 @@ view: d_math_expert_job_type {
     ;;
 
   dimension: math_expert_job_type {
+    primary_key: yes
     type: string
     description: "Type of the job"
     sql: ${TABLE}.MATH_EXPERT_JOB_TYPE ;;

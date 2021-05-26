@@ -25,6 +25,7 @@ view: d_topic {
   }
 
   dimension: topic_id {
+    primary_key: yes
     type: number
     description: "Surrogate key of a topic created by the source database"
     sql: ${TABLE}.TOPIC_ID ;;
