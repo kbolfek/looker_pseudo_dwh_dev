@@ -36,6 +36,10 @@ view: d_topic {
     sql: ${TABLE}.TOPIC_TYPE ;;
   }
 
+# CUSTOM FIELDS
+# all additional attributes and measures which do not exist in BQ matching table
+# adding a description is mandatory
+
   measure: count {
     type: count
     drill_fields: []

@@ -15,6 +15,10 @@ view: d_math_task_type {
     sql: ${TABLE}.MATH_TASK_TYPE_DESCRIPTION ;;
   }
 
+# CUSTOM FIELDS
+# all additional attributes and measures which do not exist in BQ matching table
+# adding a description is mandatory
+
   measure: count {
     type: count
     drill_fields: []

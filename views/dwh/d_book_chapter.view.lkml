@@ -44,6 +44,10 @@ view: d_book_chapter {
     sql: ${TABLE}.TITLE ;;
   }
 
+# CUSTOM FIELDS
+# all additional attributes and measures which do not exist in BQ matching table
+# adding a description is mandatory
+
   measure: count {
     type: count
     drill_fields: []

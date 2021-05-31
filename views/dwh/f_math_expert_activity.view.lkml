@@ -78,6 +78,10 @@ view: f_math_expert_activity {
     sql: ${TABLE}.MATH_TASK_ID ;;
   }
 
+# CUSTOM FIELDS
+# all additional attributes and measures which do not exist in BQ matching table
+# adding a description is mandatory
+
   measure: count {
     type: count
     drill_fields: []
