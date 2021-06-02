@@ -76,10 +76,10 @@ view: d_math_expert_job_anchor {
     sql: ${TABLE}.MATH_EXPERT_JOB_TYPE ;;
   }
 
-  dimension: math_field {
+  dimension: math_area {
     type: string
-    description: "Math field job belongs to"
-    sql: ${TABLE}.MATH_FIELD ;;
+    description: "Math area job belongs to"
+    sql: ${TABLE}.MATH_AREA ;;
   }
 
   dimension: math_task_id {
