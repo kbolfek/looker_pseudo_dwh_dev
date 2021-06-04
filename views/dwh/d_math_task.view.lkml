@@ -99,6 +99,12 @@ view: d_math_task {
     sql: ${TABLE}.TEXT ;;
   }
 
+  dimension: task_source {
+    type: string
+    description: "Source of the task (Professor or Bookpoint)"
+    sql: ${TABLE}.TASK_SOURCE ;;
+  }
+
 # CUSTOM FIELDS
 # all additional attributes and measures which do not exist in BQ matching table
 # adding a description is mandatory

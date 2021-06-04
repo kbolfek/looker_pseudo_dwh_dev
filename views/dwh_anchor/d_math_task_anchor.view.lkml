@@ -112,6 +112,13 @@ view: d_math_task_anchor {
     sql: ${TABLE}.TEXT ;;
   }
 
+  dimension: task_source {
+    type: string
+    description: "Source of the task (Professor or Bookpoint)"
+    sql: ${TABLE}.TASK_SOURCE ;;
+  }
+
+
   measure: count {
     type: count
     drill_fields: []
