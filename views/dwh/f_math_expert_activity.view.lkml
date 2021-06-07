@@ -20,6 +20,12 @@ view: f_math_expert_activity {
     sql: ${TABLE}.ACTIVITY_PRICE ;;
   }
 
+  dimension: activity_source {
+    type: string
+    description: "Source of the activity - Professor or Bookpoint"
+    sql: ${TABLE}.ACTIVITY_SOURCE ;;
+  }
+
   dimension: activity_score {
     type: number
     description: "Score assigned for the specific review job. 0 if enter job was declared as incorrect or value from 1-5 if enter job was declared as correct by specific reviewer"

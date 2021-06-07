@@ -26,6 +26,12 @@ view: f_math_expert_activity_anchor {
     sql: ${TABLE}.ACTIVITY_SCORE ;;
   }
 
+  dimension: activity_source {
+    type: string
+    description: "Source of the activity - Professor or Bookpoint"
+    sql: ${TABLE}.ACTIVITY_SOURCE ;;
+  }
+
   dimension_group: activity_started_dt {
     type: time
     description: "Date and time of when the activity was recoreded in the database"
