@@ -11,40 +11,40 @@ datagroup: photomath_dwh_dev_default_datagroup {
 
 explore: d_book_anchor {hidden: yes}
 
-explore: d_book_chapter_anchor {}
+explore: d_book_chapter_anchor {hidden: yes}
 
-explore: d_book_group_anchor {}
+explore: d_book_group_anchor {hidden: yes}
 
-explore: d_book_page_anchor {}
+explore: d_book_page_anchor {hidden: yes}
 
-explore: d_book_publisher_anchor {}
+explore: d_book_publisher_anchor {hidden: yes}
 
-explore: d_country_anchor {}
+explore: d_country_anchor {hidden: yes}
 
-explore: d_math_area_anchor {}
+explore: d_math_area_anchor {hidden: yes}
 
-explore: d_math_area_expert_anchor {}
+explore: d_math_area_expert_anchor {hidden: yes}
 
-explore: d_math_expert_anchor {}
+explore: d_math_expert_anchor {hidden: yes}
 
-explore: d_math_expert_activity_type_anchor {}
+explore: d_math_expert_activity_type_anchor {hidden: yes}
 
-explore: d_math_expert_comment_anchor {}
+explore: d_math_expert_comment_anchor {hidden: yes}
 
-explore: d_math_expert_job_anchor {}
+explore: d_math_expert_job_anchor {hidden: yes}
 
-explore: d_math_expert_job_type_anchor {}
+explore: d_math_expert_job_type_anchor {hidden: yes}
 
-explore: d_math_task_anchor {}
+explore: d_math_task_anchor {hidden: yes}
 
-explore: d_math_task_type_anchor {}
+explore: d_math_task_type_anchor {hidden: yes}
 
-explore: d_review_model_anchor {}
+explore: d_review_model_anchor {hidden: yes}
 
-explore: d_topic_anchor {}
+explore: d_topic_anchor {hidden: yes}
 
-explore: f_math_expert_activity_anchor {}
+explore: f_math_expert_activity_anchor {hidden: yes}
 
-explore: f_math_expert_qualification_anchor {}
+explore: f_math_expert_qualification_anchor {hidden: yes}
 
-explore: f_math_task_variation_example_anchor {}
+explore: f_math_task_variation_example_anchor {hidden: yes}
