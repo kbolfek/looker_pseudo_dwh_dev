@@ -9,7 +9,7 @@ datagroup: photomath_dwh_dev_default_datagroup {
   max_cache_age: "1 hour"
 }
 
-explore: d_book_anchor {}
+explore: d_book_anchor {hidden: yes}
 
 explore: d_book_chapter_anchor {}
 
