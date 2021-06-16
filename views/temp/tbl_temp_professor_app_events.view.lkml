@@ -1,6 +1,5 @@
-#EVENTS
-view: tbl_dev_events {
-  sql_table_name: `photomath-dwh-dev.STAGE.TBL_DEV_EVENTS`
+view: tbl_temp_professor_app_events {
+  sql_table_name: `photomath-dwh-dev.TEMP.TBL_TEMP_PROFESSOR_APP_EVENTS`
     ;;
 
   dimension: app_info__firebase_app_id {
@@ -157,106 +156,14 @@ view: tbl_dev_events {
     group_item_label: "Hostname"
   }
 
-  dimension: ecommerce__purchase_revenue {
-    type: number
-    sql: ${TABLE}.ecommerce.purchase_revenue ;;
-    group_label: "Ecommerce"
-    group_item_label: "Purchase Revenue"
-  }
-
-  dimension: ecommerce__purchase_revenue_in_usd {
-    type: number
-    sql: ${TABLE}.ecommerce.purchase_revenue_in_usd ;;
-    group_label: "Ecommerce"
-    group_item_label: "Purchase Revenue In USD"
-  }
-
-  dimension: ecommerce__refund_value {
-    type: number
-    sql: ${TABLE}.ecommerce.refund_value ;;
-    group_label: "Ecommerce"
-    group_item_label: "Refund Value"
-  }
-
-  dimension: ecommerce__refund_value_in_usd {
-    type: number
-    sql: ${TABLE}.ecommerce.refund_value_in_usd ;;
-    group_label: "Ecommerce"
-    group_item_label: "Refund Value In USD"
-  }
-
-  dimension: ecommerce__shipping_value {
-    type: number
-    sql: ${TABLE}.ecommerce.shipping_value ;;
-    group_label: "Ecommerce"
-    group_item_label: "Shipping Value"
-  }
-
-  dimension: ecommerce__shipping_value_in_usd {
-    type: number
-    sql: ${TABLE}.ecommerce.shipping_value_in_usd ;;
-    group_label: "Ecommerce"
-    group_item_label: "Shipping Value In USD"
-  }
-
-  dimension: ecommerce__tax_value {
-    type: number
-    sql: ${TABLE}.ecommerce.tax_value ;;
-    group_label: "Ecommerce"
-    group_item_label: "Tax Value"
-  }
-
-  dimension: ecommerce__tax_value_in_usd {
-    type: number
-    sql: ${TABLE}.ecommerce.tax_value_in_usd ;;
-    group_label: "Ecommerce"
-    group_item_label: "Tax Value In USD"
-  }
-
-  dimension: ecommerce__total_item_quantity {
-    type: number
-    sql: ${TABLE}.ecommerce.total_item_quantity ;;
-    group_label: "Ecommerce"
-    group_item_label: "Total Item Quantity"
-  }
-
-  dimension: ecommerce__transaction_id {
-    type: string
-    sql: ${TABLE}.ecommerce.transaction_id ;;
-    group_label: "Ecommerce"
-    group_item_label: "Transaction ID"
-  }
-
-  dimension: ecommerce__unique_items {
-    type: number
-    sql: ${TABLE}.ecommerce.unique_items ;;
-    group_label: "Ecommerce"
-    group_item_label: "Unique Items"
-  }
-
   dimension: event_bundle_sequence_id {
     type: number
     sql: ${TABLE}.event_bundle_sequence_id ;;
   }
 
-  dimension_group: event_date {
-    type: time
-    timeframes: [
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: TIMESTAMP(PARSE_DATE('%Y%m%d', ${TABLE}.event_date)) ;;
-    group_label: "Event Date"
-  }
-
-  dimension: event_dimensions__hostname {
+  dimension: event_date {
     type: string
-    sql: ${TABLE}.event_dimensions.hostname ;;
-    group_label: "Event Dimensions"
-    group_item_label: "Hostname"
+    sql: ${TABLE}.event_date ;;
   }
 
   dimension: event_name {
@@ -329,11 +236,6 @@ view: tbl_dev_events {
     sql: ${TABLE}.geo.sub_continent ;;
     group_label: "Geo"
     group_item_label: "Sub Continent"
-  }
-
-  dimension: items {
-    hidden: yes
-    sql: ${TABLE}.items ;;
   }
 
   dimension: platform {
@@ -414,212 +316,30 @@ view: tbl_dev_events {
       device__mobile_model_name,
       device__mobile_brand_name,
       device__web_info__hostname,
-      event_dimensions__hostname,
       device__mobile_marketing_name
     ]
   }
 
 #CUSTOM DIMENSION AND MEASURES
-  measure: number_of_users {
-    type: count_distinct
-    sql: ${user_id} ;;
-    drill_fields: [event_date_week, number_of_users]
-  }
-
-  dimension: user_engagement_status {
-    type: string
-    sql:
-      CASE
-          WHEN event_name = 'user_engagement'  THEN 'App Opened'
-          WHEN event_name = 'ProfessorQuestionSent'  THEN 'Question Sent'
-          WHEN event_name = 'ProfessorTaskResultShown'  THEN 'Solution Viewed'
-          WHEN event_name = 'ProfessorTaskResultCtaClicked'  THEN 'Steps Viewed'
-          WHEN event_name = 'ProfessorFeedbackAnswered'  THEN 'Solution Rated'
-      END;;
-  }
-
-  dimension: user_engagement_status_rank {
-    type: number
-    sql:
-      CASE
-        WHEN event_name = 'user_engagement'  THEN '0'
-        WHEN event_name = 'ProfessorQuestionSent'  THEN '1'
-        WHEN event_name = 'ProfessorTaskResultShown'  THEN '2'
-        WHEN event_name = 'ProfessorTaskResultCtaClicked'  THEN '3'
-        WHEN event_name = 'ProfessorFeedbackAnswered'  THEN '4'
-      END;;
-  }
-
-  dimension: customer_acquisition_funnel {
-    type: string
-    sql:
-      CASE
-        WHEN event_name = 'user_engagement' THEN 'App Opened'
-        WHEN event_name = 'ProfessorInboxTaskLoadingSuccess' THEN 'Inbox Viewed'
-        WHEN event_name = 'ProfessorAskNewQuestionClicked' THEN 'Inbox CTA Clicked'
-        WHEN event_name = 'PopupPaywallShown' THEN 'AAE Paywall Shown'
-        WHEN event_name = 'TrialStarted' THEN 'Trial Started'
-        WHEN event_name = 'Subscribed' THEN 'Subscribed'
-      END
-    ;;
-  }
-
-  dimension: customer_acquisition_funnel_rank {
-    type: number
-    sql:
-      CASE
-        WHEN event_name = 'user_engagement' THEN 1
-        WHEN event_name = 'ProfessorInboxTaskLoadingSuccess' THEN 2
-        WHEN event_name = 'ProfessorAskNewQuestionClicked' THEN 3
-        WHEN event_name = 'PopupPaywallShown' THEN 4
-        WHEN event_name = 'TrialStarted' THEN 5
-        WHEN event_name = 'Subscribed' THEN 6
-      END
-    ;;
-  }
-
-
-}
-
-
-#EVENTS - ITEMS
-view: tbl_dev_events__items {
-  dimension: affiliation {
-    type: string
-    sql: ${TABLE}.affiliation ;;
-  }
-
-  dimension: coupon {
-    type: string
-    sql: ${TABLE}.coupon ;;
-  }
-
-  dimension: creative_name {
-    type: string
-    sql: ${TABLE}.creative_name ;;
-  }
-
-  dimension: creative_slot {
-    type: string
-    sql: ${TABLE}.creative_slot ;;
-  }
-
-  dimension: item_brand {
-    type: string
-    sql: ${TABLE}.item_brand ;;
-  }
-
-  dimension: item_category {
-    type: string
-    sql: ${TABLE}.item_category ;;
-  }
-
-  dimension: item_category2 {
-    type: string
-    sql: ${TABLE}.item_category2 ;;
-  }
-
-  dimension: item_category3 {
-    type: string
-    sql: ${TABLE}.item_category3 ;;
-  }
-
-  dimension: item_category4 {
-    type: string
-    sql: ${TABLE}.item_category4 ;;
-  }
-
-  dimension: item_category5 {
-    type: string
-    sql: ${TABLE}.item_category5 ;;
-  }
-
-  dimension: item_id {
-    type: string
-    sql: ${TABLE}.item_id ;;
-  }
-
-  dimension: item_list_id {
-    type: string
-    sql: ${TABLE}.item_list_id ;;
-  }
-
-  dimension: item_list_index {
-    type: string
-    sql: ${TABLE}.item_list_index ;;
-  }
-
-  dimension: item_list_name {
-    type: string
-    sql: ${TABLE}.item_list_name ;;
-  }
-
-  dimension: item_name {
-    type: string
-    sql: ${TABLE}.item_name ;;
-  }
-
-  dimension: item_refund {
-    type: number
-    sql: ${TABLE}.item_refund ;;
-  }
-
-  dimension: item_refund_in_usd {
-    type: number
-    sql: ${TABLE}.item_refund_in_usd ;;
-  }
-
-  dimension: item_revenue {
-    type: number
-    sql: ${TABLE}.item_revenue ;;
-  }
-
-  dimension: item_revenue_in_usd {
-    type: number
-    sql: ${TABLE}.item_revenue_in_usd ;;
-  }
-
-  dimension: item_variant {
-    type: string
-    sql: ${TABLE}.item_variant ;;
-  }
-
-  dimension: location_id {
-    type: string
-    sql: ${TABLE}.location_id ;;
-  }
-
-  dimension: price {
-    type: number
-    sql: ${TABLE}.price ;;
-  }
-
-  dimension: price_in_usd {
-    type: number
-    sql: ${TABLE}.price_in_usd ;;
-  }
-
-  dimension: promotion_id {
-    type: string
-    sql: ${TABLE}.promotion_id ;;
-  }
-
-  dimension: promotion_name {
-    type: string
-    sql: ${TABLE}.promotion_name ;;
-  }
-
-  dimension: quantity {
-    type: number
-    sql: ${TABLE}.quantity ;;
+  dimension_group: event_date {
+    type: time
+    timeframes: [
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: TIMESTAMP(PARSE_DATE('%Y%m%d', ${TABLE}.event_date)) ;;
+    group_label: "Event Date"
   }
 }
 
-#EVENTS - EVENT PARAMS
-view: tbl_dev_events__event_params {
+view: tbl_temp_professor_app_events__event_params {
   dimension: key {
     type: string
     sql: ${TABLE}.key ;;
+    alias: [event_params]
   }
 
   dimension: value__double_value {
@@ -649,23 +369,13 @@ view: tbl_dev_events__event_params {
     group_label: "Value"
     group_item_label: "String Value"
   }
-
-  dimension: task_id {
-    type: string
-    sql: MAX(
-      CASE
-        WHEN ${key} = 'TaskId' THEN ${value__string_value}
-        ELSE NULL
-      END
-      ) OVER (PARTITIION BY ${TABLE}.event_name) ;;
-  }
 }
 
-#EVENTS - USER PROPERTIES
-view: tbl_dev_events__user_properties {
+view: tbl_temp_professor_app_events__user_properties {
   dimension: key {
     type: string
     sql: ${TABLE}.key ;;
+    alias: [user_properties]
   }
 
   dimension: value__double_value {
@@ -703,23 +413,4 @@ view: tbl_dev_events__user_properties {
     group_item_label: "String Value"
   }
 
-  dimension: professor_user_cohort {
-    type: string
-    description: "User cohort label created for Professor"
-    sql:
-      CASE
-        WHEN ${key} = "professor_variant" THEN lower(${value__string_value})
-        ELSE NULL
-      END;;
-  }
-
-  dimension: user_subscription_status {
-    type: string
-    description: "User's subscription status (free, paid, trial)"
-    sql:
-      CASE
-        WHEN ${key} = 'subscription_state' THEN ${value__string_value}
-        ELSE NULL
-      END;;
-  }
 }

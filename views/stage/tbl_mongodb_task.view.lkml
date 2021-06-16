@@ -48,6 +48,7 @@ view: tbl_mongodb_task {
 
   dimension_group: created_ {
     type: time
+    description: "bq-datetime"
     timeframes: [
       raw,
       time,
@@ -172,6 +173,7 @@ view: tbl_mongodb_task {
 
   dimension_group: updated_ {
     type: time
+    description: "bq-datetime"
     timeframes: [
       raw,
       time,
@@ -215,6 +217,7 @@ view: tbl_mongodb_task__steps {
 
   dimension_group: created_ {
     type: time
+    description: "bq-datetime"
     timeframes: [
       raw,
       time,
@@ -230,7 +233,7 @@ view: tbl_mongodb_task__steps {
   }
 
   dimension: example_id {
-    type: string
+    type: number
     sql: ${TABLE}.exampleId ;;
   }
 

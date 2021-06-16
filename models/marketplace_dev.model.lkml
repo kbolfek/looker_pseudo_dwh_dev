@@ -9,7 +9,7 @@ include: "/**/*.view.lkml"                 # include all views in this project
 #
 
 explore: math_expert_activity {
-  label:"Math Experts"
+  label:"Math Experts: Activities"
 
   from: f_math_expert_activity
 
@@ -97,7 +97,7 @@ explore: math_expert_activity {
   }
 }
 explore: math_task {
-  label: "Bookpoint"
+  label: "Books"
   from: d_math_task
 
   join: book {
@@ -128,5 +128,31 @@ explore: math_task {
     sql_on: ${book_chapter.book_chapter_id} = ${d_book_page.book_chapter_id};;
   }
 
+}
+
+explore: math_expert_qualification {
+  label: "Math Experts"
+  from: ext_f_math_expert_qualification
+
+  join: math_expert {
+    from: d_math_expert
+    type: left_outer
+    sql_on: ${math_expert_qualification.math_expert_id} = ${math_expert.math_expert_id} ;;
+    relationship: many_to_one
+  }
+
+  join: country {
+    from: d_country
+    type:  left_outer
+    relationship: many_to_one
+    sql_on: ${math_expert.country_id} = ${country.country_id} ;;
+  }
+
+  join: math_area_expert {
+    from: d_math_area_expert
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${math_expert.math_expert_id} = ${math_area_expert.math_expert_id} ;;
+  }
 
 }
