@@ -1,4 +1,4 @@
-view: d_math_expert_job {
+view: d_math_expert_job_anchor {
   sql_table_name: `DWH.TBL_D_MATH_EXPERT_JOB`
     ;;
 
@@ -65,7 +65,6 @@ view: d_math_expert_job {
   }
 
   dimension: math_expert_job_id {
-    primary_key: yes
     type: number
     description: "Surrogate key of a job created by the source database"
     sql: ${TABLE}.MATH_EXPERT_JOB_ID ;;
@@ -150,10 +149,6 @@ view: d_math_expert_job {
     description: "Defines a specific score for creating visual content."
     sql: ${TABLE}.VISUAL_SCORE ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

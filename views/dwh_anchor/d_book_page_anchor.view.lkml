@@ -1,4 +1,4 @@
-view: d_book_page {
+view: d_book_page_anchor {
   sql_table_name: `DWH.TBL_D_BOOK_PAGE`
     ;;
 
@@ -15,7 +15,6 @@ view: d_book_page {
   }
 
   dimension: book_page_id {
-    primary_key: yes
     type: number
     description: "Surrogate key of a book page created by the source database"
     sql: ${TABLE}.BOOK_PAGE_ID ;;
@@ -61,10 +60,6 @@ view: d_book_page {
     description: "Width of the page"
     sql: ${TABLE}.WIDTH ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

@@ -1,4 +1,4 @@
-view: d_math_expert_comment {
+view: d_math_expert_comment_anchor {
   sql_table_name: `DWH.TBL_D_MATH_EXPERT_COMMENT`
     ;;
 
@@ -63,7 +63,6 @@ view: d_math_expert_comment {
   }
 
   dimension: math_expert_comment_id {
-    primary_key: yes
     type: number
     description: "Surrogate key of a comment created by the source database"
     sql: ${TABLE}.MATH_EXPERT_COMMENT_ID ;;
@@ -92,10 +91,6 @@ view: d_math_expert_comment {
     description: "Foreign key to table D_MATH_EXPERT. Math expert - reviewer - person who added the comment"
     sql: ${TABLE}.REVIEWER_MATH_EXPERT_ID ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

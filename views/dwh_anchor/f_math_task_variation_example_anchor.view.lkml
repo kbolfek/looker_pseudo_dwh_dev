@@ -1,4 +1,4 @@
-view: f_math_task_variation_example {
+view: f_math_task_variation_example_anchor {
   sql_table_name: `DWH.TBL_F_MATH_TASK_VARIATION_EXAMPLE`
     ;;
 
@@ -13,10 +13,6 @@ view: f_math_task_variation_example {
     description: "Foreign key to D_MATH_TASK. Task which is the variation of the example task"
     sql: ${TABLE}.MATH_TASK_VARIATION_ID ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

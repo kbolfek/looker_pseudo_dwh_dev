@@ -1,6 +1,21 @@
-view: f_math_expert_qualification {
-  sql_table_name: `DWH.TBL_F_MATH_EXPERT_QUALIFICATION`
+view: d_math_area_expert_anchor {
+  sql_table_name: `DWH.TBL_D_MATH_AREA_EXPERT`
     ;;
+
+  dimension: is_professor_qualified {
+    type: yesno
+    sql: ${TABLE}.IS_PROFESSOR_QUALIFIED ;;
+  }
+
+  dimension: is_reviewing_qualified {
+    type: yesno
+    sql: ${TABLE}.IS_REVIEWING_QUALIFIED ;;
+  }
+
+  dimension: is_solving_qualified {
+    type: yesno
+    sql: ${TABLE}.IS_SOLVING_QUALIFIED ;;
+  }
 
   dimension: math_area {
     type: string
@@ -40,10 +55,6 @@ view: f_math_expert_qualification {
     ]
     sql: ${TABLE}.STATUS_CHANGE_DT ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

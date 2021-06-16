@@ -1,9 +1,8 @@
-view: d_book_chapter {
+view: d_book_chapter_anchor {
   sql_table_name: `DWH.TBL_D_BOOK_CHAPTER`
     ;;
 
   dimension: book_chapter_id {
-    primary_key: yes
     type: number
     description: "Surrogate key of a book chapter created by the source database"
     sql: ${TABLE}.BOOK_CHAPTER_ID ;;
@@ -43,10 +42,6 @@ view: d_book_chapter {
     description: "Title of the chapter"
     sql: ${TABLE}.TITLE ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

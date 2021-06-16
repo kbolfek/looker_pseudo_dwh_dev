@@ -1,4 +1,4 @@
-view: d_topic {
+view: d_topic_anchor {
   sql_table_name: `DWH.TBL_D_TOPIC`
     ;;
 
@@ -25,7 +25,6 @@ view: d_topic {
   }
 
   dimension: topic_id {
-    primary_key: yes
     type: number
     description: "Surrogate key of a topic created by the source database"
     sql: ${TABLE}.TOPIC_ID ;;
@@ -35,10 +34,6 @@ view: d_topic {
     type: string
     sql: ${TABLE}.TOPIC_TYPE ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

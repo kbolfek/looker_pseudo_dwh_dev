@@ -1,9 +1,8 @@
-view: d_book_group {
+view: d_book_group_anchor {
   sql_table_name: `DWH.TBL_D_BOOK_GROUP`
     ;;
 
   dimension: book_group_id {
-    primary_key: yes
     type: number
     description: "Surrogate key of a book group created by the source database"
     sql: ${TABLE}.BOOK_GROUP_ID ;;
@@ -14,10 +13,6 @@ view: d_book_group {
     description: "Book group name"
     sql: ${TABLE}.BOOK_GROUP_NAME ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

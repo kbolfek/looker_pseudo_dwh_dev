@@ -1,4 +1,4 @@
-view: d_country {
+view: d_country_anchor {
   sql_table_name: `DWH.TBL_D_COUNTRY`
     ;;
 
@@ -21,7 +21,6 @@ view: d_country {
   }
 
   dimension: country_id {
-    primary_key: yes
     type: number
     description: "Surrogate key of a country created by the source database"
     sql: ${TABLE}.COUNTRY_ID ;;
@@ -32,10 +31,6 @@ view: d_country {
     description: "Name of the country"
     sql: ${TABLE}.COUNTRY_NAME ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

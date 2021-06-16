@@ -1,4 +1,4 @@
-view: d_math_task {
+view: d_math_task_anchor {
   sql_table_name: `DWH.TBL_D_MATH_TASK`
     ;;
 
@@ -72,7 +72,6 @@ view: d_math_task {
   }
 
   dimension: math_task_id {
-    primary_key: yes
     type: number
     description: "Surrogate key of a math task created by the source database"
     sql: ${TABLE}.MATH_TASK_ID ;;
@@ -119,9 +118,6 @@ view: d_math_task {
     sql: ${TABLE}.TASK_SOURCE ;;
   }
 
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

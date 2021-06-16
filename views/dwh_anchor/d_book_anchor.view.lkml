@@ -1,4 +1,4 @@
-view: d_book {
+view: d_book_anchor {
   sql_table_name: `DWH.TBL_D_BOOK`
     ;;
 
@@ -117,10 +117,6 @@ view: d_book {
     description: "Year of book publishing"
     sql: ${TABLE}.YEAR ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

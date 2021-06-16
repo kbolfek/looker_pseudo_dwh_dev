@@ -1,4 +1,4 @@
-view: d_math_expert {
+view: d_math_expert_anchor {
   sql_table_name: `DWH.TBL_D_MATH_EXPERT`
     ;;
 
@@ -123,7 +123,6 @@ view: d_math_expert {
   }
 
   dimension: math_expert_id {
-    primary_key: yes
     type: number
     description: "Surrogate key of a math expert created by the source database"
     sql: ${TABLE}.MATH_EXPERT_ID ;;
@@ -209,10 +208,6 @@ view: d_math_expert {
     description: "Identifies search terms"
     sql: ${TABLE}.UTM_TERM ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count

@@ -1,4 +1,4 @@
-view: f_math_expert_activity {
+view: f_math_expert_activity_anchor {
   sql_table_name: `DWH.TBL_F_MATH_EXPERT_ACTIVITY`
     ;;
 
@@ -20,16 +20,16 @@ view: f_math_expert_activity {
     sql: ${TABLE}.ACTIVITY_PRICE ;;
   }
 
-  dimension: activity_source {
-    type: string
-    description: "Source of the activity - Professor or Bookpoint"
-    sql: ${TABLE}.ACTIVITY_SOURCE ;;
-  }
-
   dimension: activity_score {
     type: number
     description: "Score assigned for the specific review job. 0 if enter job was declared as incorrect or value from 1-5 if enter job was declared as correct by specific reviewer"
     sql: ${TABLE}.ACTIVITY_SCORE ;;
+  }
+
+  dimension: activity_source {
+    type: string
+    description: "Source of the activity - Professor or Bookpoint"
+    sql: ${TABLE}.ACTIVITY_SOURCE ;;
   }
 
   dimension_group: activity_started_dt {
@@ -60,7 +60,6 @@ view: f_math_expert_activity {
   }
 
   dimension: math_expert_activity_id {
-    primary_key: yes
     type: number
     description: "Surrogate key of a math expert activity created by the source database"
     sql: ${TABLE}.MATH_EXPERT_ACTIVITY_ID ;;
@@ -83,10 +82,6 @@ view: f_math_expert_activity {
     description: "Foreign key to D_MATH_TASK. Which task is the activity about"
     sql: ${TABLE}.MATH_TASK_ID ;;
   }
-
-# CUSTOM FIELDS
-# all additional attributes and measures which do not exist in BQ matching table
-# adding a description is mandatory
 
   measure: count {
     type: count
