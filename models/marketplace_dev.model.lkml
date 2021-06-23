@@ -9,6 +9,7 @@ include: "/**/*.view.lkml"                 # include all views in this project
 #
 
 explore: math_expert_activity {
+  description: "Model containing all the data related to math experts' activities on marketplace"
   label:"Math Experts: Activities"
 
   from: f_math_expert_activity
@@ -95,8 +96,16 @@ explore: math_expert_activity {
     relationship: many_to_many
     sql_on: ${math_task.math_task_id} = ${math_task_variation.math_task_variation_id};;
   }
+
+  join: math_task_duration {
+    from: dtbl_math_task_duration
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${math_task.math_task_id} = ${math_task_duration.math_task_id}  ;;
+  }
 }
 explore: math_task {
+  description: "Model containing all the data related to processed math books"
   label: "Books"
   from: d_math_task
 
@@ -131,6 +140,7 @@ explore: math_task {
 }
 
 explore: math_expert_qualification {
+  description: "Model containing all the data related to math experts"
   label: "Math Experts"
   from: ext_f_math_expert_qualification
 

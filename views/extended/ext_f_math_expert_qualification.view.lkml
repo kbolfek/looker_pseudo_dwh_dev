@@ -3,6 +3,10 @@ include: "/views/dwh/*.view"
 view: ext_f_math_expert_qualification {
   extends: [f_math_expert_qualification]
 
+  dimension: status {
+    html: {{ status | capitalize | replace: "_", " " }};;
+  }
+
   dimension: status_rank {
     type: number
     sql:
