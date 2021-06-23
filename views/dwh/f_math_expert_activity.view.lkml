@@ -72,6 +72,12 @@ view: f_math_expert_activity {
     sql: ${TABLE}.MATH_EXPERT_ACTIVITY_TYPE ;;
   }
 
+  dimension: math_expert_activity_reason {
+    type: string
+    description: "Reason for Math Expert to do the activity in MATH_EXPERT_ACTIVITY_TYPE"
+    sql: ${TABLE}.MATH_EXPERT_ACTIVITY_REASON ;;
+  }
+
   dimension: math_expert_id {
     type: number
     description: "Foreign key to D_MATH_EXPERT. Who triggered/did the activity"
