@@ -43,34 +43,20 @@ explore: professor_app_events {
   }
 }
 
-explore: tbl_mongodb_task {
+explore: professor_tasks {
   #explore properties
-  label: "Professor Tasks"
   group_label: "Professor"
   description: "Model containing backend data related to Professor tasks"
 
   #view properties
-  from: tbl_mongodb_task
-  view_label: "Task"
+  from: ext_professor_oak_tasks
 
-  join: tbl_mongodb_task__steps {
-    from: tbl_mongodb_task__steps
-    view_label: "Task: Steps"
-    sql: LEFT JOIN UNNEST(${tbl_mongodb_task.steps}) as tbl_mongodb_task__steps ;;
-    relationship: one_to_many
-  }
-
-  join: tbl_mongodb_task__steps__reason {
-    from: tbl_mongodb_task__steps__reason
-    view_label: "Task: Steps Reason"
-    sql: LEFT JOIN UNNEST(${tbl_mongodb_task__steps.reason}) as tbl_mongodb_task__steps__reason ;;
-    relationship: one_to_many
-  }
-
+  #UNHIDE THIS AFTER SWITCHING TO PROD!
+  #sql_always_where: ${task_created_timestamp_date} >= '2021-05-19' ;;
 }
 
 explore: professor_marketplace_turnaround_time {
-  from: tbl_professor_mktp_turnaround_time
+  from: ext_professor_mktp_turnaround_time
   view_label: "Professor Turnaround Time"
   group_label: "Professor"
   description: "Model containing the data related to solving/reviewing Professor tasks on Marketplace"

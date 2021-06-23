@@ -31,5 +31,6 @@ view: ext_professor_subscriptions {
     type: sum
     sql: ${product_price} ;;
     filters: [subscription_event: "ConversionToPurchase"]
+    value_format_name: usd_0
   }
 }

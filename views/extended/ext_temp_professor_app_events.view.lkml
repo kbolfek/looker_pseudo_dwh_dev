@@ -28,7 +28,6 @@ view: ext_temp_professor_app_events {
     description: "Number of unique users"
     type: count_distinct
     sql: ${user_id} ;;
-    drill_fields: [event_date, number_of_users]
   }
 
   dimension: feature_engagement_status {
@@ -130,20 +129,33 @@ view: ext_temp_professor_app_events {
     sql: ${dtbl_questions_sent_per_user.no_of_questions_sent_per_month} ;;
     style: integer
   }
+
+  dimension: feedback_answer {
+    description: "Feedback from an app user on final task solution - user taps on Thumbs up or Thumbs down"
+    type: string
+    sql:
+      CASE
+        WHEN ${event_name} = 'ProfessorFeedbackAnswered' and ${event_params.key} = 'Status' THEN ${event_params.value__string_value}
+        ELSE NULL
+      END
+    ;;
+  }
+
 }
+
 
 view: ext_temp_professor_app_events__event_params {
   extends: [tbl_temp_professor_app_events__event_params]
 
   dimension: task_id {
     type: string
-    sql: MAX(
+    sql:
         CASE
           WHEN ${key} = 'TaskId' THEN ${value__string_value}
           ELSE NULL
-        END
-        ) OVER (PARTITIION BY ${TABLE}.event_name) ;;
+        END;;
   }
+
 }
 
 #USER PROPERTIES
