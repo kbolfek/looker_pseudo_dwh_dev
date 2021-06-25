@@ -9,6 +9,7 @@ include: "/**/*.view.lkml"                 # include all views in this project
 #
 
 explore: math_expert_activity {
+  hidden: yes
   description: "Model containing all the data related to math experts' activities on marketplace"
   label:"Math Experts: Activities"
 
@@ -105,6 +106,7 @@ explore: math_expert_activity {
   }
 }
 explore: math_task {
+  hidden: yes
   description: "Model containing all the data related to processed math books"
   label: "Books"
   from: d_math_task
@@ -140,6 +142,7 @@ explore: math_task {
 }
 
 explore: math_expert_qualification {
+  hidden: yes
   description: "Model containing all the data related to math experts"
   label: "Math Experts"
   from: ext_f_math_expert_qualification

@@ -4,6 +4,7 @@ connection: "bq_photomath_dwh_dev"
 include: "/**/*.view.lkml"                 # include all views in this project
 
 explore: professor_app_events {
+  hidden: yes
   #explore properties
   label: "Professor Events"
   description: "Model containing the data related to Professor events and subscriptions"
@@ -44,6 +45,7 @@ explore: professor_app_events {
 }
 
 explore: professor_tasks {
+  hidden: yes
   #explore properties
   group_label: "Professor"
   description: "Model containing backend data related to Professor tasks"
@@ -56,6 +58,7 @@ explore: professor_tasks {
 }
 
 explore: professor_marketplace_turnaround_time {
+  hidden: yes
   from: ext_professor_mktp_turnaround_time
   view_label: "Professor Turnaround Time"
   group_label: "Professor"
