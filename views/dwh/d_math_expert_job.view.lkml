@@ -73,8 +73,14 @@ view: d_math_expert_job {
 
   dimension: math_expert_job_type {
     type: string
-    description: "Type of the job (review, test, score, enter)"
+    description: "Type of the job (review, enter)"
     sql: ${TABLE}.MATH_EXPERT_JOB_TYPE ;;
+  }
+
+  dimension: math_expert_job_mode {
+    type: string
+    description: "Mode of the job (regular, test, score, demo, trial, internal, external)"
+    sql: ${TABLE}.MATH_EXPERT_JOB_MODE ;;
   }
 
   dimension: math_area {
