@@ -70,6 +70,12 @@ view: d_math_expert_job_anchor {
     sql: ${TABLE}.MATH_EXPERT_JOB_ID ;;
   }
 
+  dimension: math_expert_job_class_id {
+    type: number
+    description: "Foreign key to table D_MATH_EXPERT_JOB_CLASS, which lists all possible classes (former topics) offered."
+    sql: ${TABLE}.MATH_EXPERT_JOB_CLASS ;;
+  }
+
   dimension: math_expert_job_type {
     type: string
     description: "Type of the job (review, enter)"
