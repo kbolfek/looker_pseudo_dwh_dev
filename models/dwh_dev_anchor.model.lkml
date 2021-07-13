@@ -2,49 +2,53 @@ connection: "bq_photomath_dwh_dev"
 
 # include all the views
 #include: "/views/**/*.view"
-include: "/views/dwh_anchor/*.view"
+include: "/views/dwh/*.view"
 
 datagroup: photomath_dwh_dev_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "1 hour"
 }
 
-explore: d_book_anchor {hidden: yes}
+explore: d_book {hidden: yes}
 
-explore: d_book_chapter_anchor {hidden: yes}
+explore: d_book_chapter {hidden: yes}
 
-explore: d_book_group_anchor {hidden: yes}
+explore: d_book_group {hidden: yes}
 
-explore: d_book_page_anchor {hidden: yes}
+explore: d_book_page {hidden: yes}
 
-explore: d_book_publisher_anchor {hidden: yes}
+explore: d_book_publisher {hidden: yes}
 
-explore: d_country_anchor {hidden: yes}
+explore: d_country {hidden: yes}
 
-explore: d_math_area_anchor {hidden: yes}
+explore: d_math_area {hidden: yes}
 
-explore: d_math_area_expert_anchor {hidden: yes}
+explore: d_math_area_expert {hidden: yes}
 
-explore: d_math_expert_anchor {hidden: yes}
+explore: d_math_expert{hidden: yes}
 
-explore: d_math_expert_activity_type_anchor {hidden: yes}
+explore: d_math_expert_activity_type {hidden: yes}
 
-explore: d_math_expert_comment_anchor {hidden: yes}
+explore: d_math_expert_comment {hidden: yes}
 
-explore: d_math_expert_job_anchor {hidden: yes}
+explore: d_math_expert_job {hidden: yes}
 
-explore: d_math_expert_job_type_anchor {hidden: yes}
+explore: d_math_expert_job_type{hidden: yes}
 
-explore: d_math_task_anchor {hidden: yes}
+explore: d_math_expert_job_mode{hidden: yes}
 
-explore: d_math_task_type_anchor {hidden: yes}
+explore: d_math_expert_job_class{hidden: yes}
 
-explore: d_review_model_anchor {hidden: yes}
+explore: d_math_task {hidden: yes}
 
-explore: d_topic_anchor {hidden: yes}
+explore: d_math_task_type {hidden: yes}
 
-explore: f_math_expert_activity_anchor {hidden: yes}
+explore: d_review_model {hidden: yes}
 
-explore: f_math_expert_qualification_anchor {hidden: yes}
+explore: d_topic {hidden: yes}
 
-explore: f_math_task_variation_example_anchor {hidden: yes}
+explore: f_math_expert_activity {hidden: yes}
+
+explore: f_math_expert_qualification {hidden: yes}
+
+explore: f_math_task_variation_example {hidden: yes}
