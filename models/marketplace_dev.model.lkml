@@ -142,7 +142,6 @@ explore: math_task {
 }
 
 explore: math_expert_qualification {
-  hidden: yes
   description: "Model containing all the data related to math experts"
   label: "Math Experts"
   from: ext_f_math_expert_qualification

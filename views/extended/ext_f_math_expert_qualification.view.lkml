@@ -50,5 +50,14 @@ view: ext_f_math_expert_qualification {
   measure: number_of_experts {
     type: count_distinct
     sql: ${math_expert_id} ;;
+    drill_fields: [drill_set1*, drill_set2*]
+  }
+
+  set: drill_set1 {
+    fields: [status, status_change_dt_date]
+  }
+
+  set: drill_set2 {
+    fields: [status, previous_status]
   }
 }

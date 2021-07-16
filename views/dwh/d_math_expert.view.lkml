@@ -24,6 +24,10 @@ view: d_math_expert {
     type: string
     description: "Initial provider math expert used for first account authentication (google, facebook, local)"
     sql: ${TABLE}.CREATED_AUTH_PROVIDER ;;
+    link: {
+      label: "Search on Google"
+      url: "http://www.google.com/search?q={{ value }}"
+    }
   }
 
   dimension_group: email_verified_dt {
@@ -78,6 +82,10 @@ view: d_math_expert {
     type: yesno
     description: "Indicates whether math expert is actually internal"
     sql: ${TABLE}.IS_INTERNAL ;;
+    link: {
+      label: "Drill down to Look"
+      url: "https://photomath.cloud.looker.com/looks/74?&f[d_math_expert.is_internal]={{ value | url_encode }}"
+    }
   }
 
   dimension: is_locked {
@@ -216,6 +224,12 @@ view: d_math_expert {
 
   measure: count {
     type: count
-    drill_fields: []
   }
+
+  measure: number_of_experts {
+    type: count_distinct
+    sql: ${math_expert_id} ;;
+    drill_fields: [utm_source, count]
+}
+
 }
