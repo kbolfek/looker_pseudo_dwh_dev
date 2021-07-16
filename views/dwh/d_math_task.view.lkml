@@ -65,6 +65,13 @@ view: d_math_task {
     sql: ${TABLE}.IS_SOLVED ;;
   }
 
+  dimension: is_top_skipped {
+    type: yesno
+    description: "Indicates if the job related to the task (and hence the task) was skipped more than 100 times"
+    sql: ${TABLE}.IS_TOP_SKIPPED ;;
+  }
+
+
   dimension: math_area {
     type: string
     description: "Math area the task belongs to"
