@@ -62,6 +62,13 @@ view: d_book_page {
     sql: ${TABLE}.WIDTH ;;
   }
 
+
+  dimension: annotation_status {
+    type: string
+    description: "Status of the annotation - 1.NOT_ANNOTATED (the page is not annotated yet), 2.ANNOTATED (the page is annotated, and ready to be verified), 3.ANNOTATION_VERIFIED (the annotation of the page has been verified)"
+    sql: ${TABLE}.ANNOTATION_STATUS ;;
+  }
+
 # CUSTOM FIELDS
 # all additional attributes and measures which do not exist in BQ matching table
 # adding a description is mandatory
