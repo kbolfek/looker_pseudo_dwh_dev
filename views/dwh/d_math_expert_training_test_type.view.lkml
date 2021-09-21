@@ -1,7 +1,7 @@
 
 view: d_math_expert_training_test_type {
 
-  sql_table_name: `DWH.D_MATH_EXPERT_TRAINING_TEST_TYPE`
+  sql_table_name: `DWH.TBL_D_MATH_EXPERT_TRAINING_TEST_TYPE`
     ;;
 
 

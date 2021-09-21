@@ -1,6 +1,6 @@
 view: f_math_expert_training_test_result {
 
-  sql_table_name: `DWH.F_MATH_EXPERT_TRAINING_TEST_RESULT`
+  sql_table_name: `DWH.TBL_F_MATH_EXPERT_TRAINING_TEST_RESULT`
     ;;
 
   dimension: correct_answer_qty {
