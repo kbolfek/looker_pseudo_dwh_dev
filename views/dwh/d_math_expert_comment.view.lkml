@@ -56,6 +56,55 @@ view: d_math_expert_comment {
     sql: ${TABLE}.IS_VISUALCONTENT_CORRECT ;;
   }
 
+
+  dimension: is_math_correct {
+    type: yesno
+    description: "Indicates whether one of the reasons for existance of the comment is violating Math rule"
+    sql: ${TABLE}.IS_MATH_CORRECT ;;
+  }
+
+  dimension: is_unclearexplanation_correct {
+    type: yesno
+    description: "Indicates whether one of the reasons for existance of the comment is violating Unclear explanation rule"
+    sql: ${TABLE}.IS_UNCLEAREXPLANATION_CORRECT ;;
+  }
+
+  dimension: is_incompletesolution_correct {
+    type: yesno
+    description: "Indicates whether one of the reasons for existance of the comment is violating Incomplete solution rule"
+    sql: ${TABLE}.IS_INCOMPLETESOLUTION_CORRECT ;;
+  }
+
+  dimension: is_precision_correct {
+    type: yesno
+    description: "Indicates whether one of the reasons for existance of the comment is violating Precision rule"
+    sql: ${TABLE}.IS_PRECISION_CORRECT ;;
+  }
+
+  dimension: is_missinginfo_correct {
+    type: yesno
+    description: "Indicates whether one of the reasons for existance of the comment is violating Missing info rule"
+    sql: ${TABLE}.IS_MISSINGINFO_CORRECT ;;
+  }
+
+  dimension: is_inappropriatebehaviour_correct {
+    type: yesno
+    description: "Indicates whether one of the reasons for existance of the comment is violating Inappropriate behaviour rule"
+    sql: ${TABLE}.IS_INAPPROPRIATEBEHAVIOUR_CORRECT ;;
+  }
+
+  dimension: is_legal_correct {
+    type: yesno
+    description: "Indicates whether one of the reasons for existance of the comment is violating Legal rule"
+    sql: ${TABLE}.IS_LEGAL_CORRECT ;;
+  }
+
+  dimension: is_stepform_correct {
+    type: yesno
+    description: "Indicates whether one of the reasons for existance of the comment is violating Step form rule"
+    sql: ${TABLE}.IS_STEPFORM_CORRECT ;;
+  }
+
   dimension: math_area {
     type: string
     description: "Math area the task and job belong to"
