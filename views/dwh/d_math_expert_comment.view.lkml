@@ -8,6 +8,12 @@ view: d_math_expert_comment {
     sql: ${TABLE}.COMMENT ;;
   }
 
+  dimension: is_critical_rule_correct {
+    type: yesno
+    description: "Indicates whether one of the reasons for existance of the comment is violating one of critical rules (math, unclearExplanation, incompleteSolution, precision, missingInfo, inappropriateBehaviour)"
+    sql: ${TABLE}.IS_CRITICAL_RULE_CORRECT ;;
+  }
+
   dimension: is_coloring_correct {
     type: yesno
     description: "Indicates whether one of the reasons for existance of the comment is violating Coloring rule"
