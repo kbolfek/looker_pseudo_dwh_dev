@@ -111,7 +111,7 @@ view: d_math_task {
 
   dimension: status {
     type: string
-    sql: ${TABLE}.STATUS ;;
+    sql: ${TABLE}.ANNOTATION_STATUS ;;
   }
 
   dimension: text {
@@ -123,7 +123,7 @@ view: d_math_task {
   dimension: task_source {
     type: string
     description: "Source of the task (Professor or Bookpoint)"
-    sql: ${TABLE}.TASK_SOURCE ;;
+    sql: ${TABLE}.SOURCE ;;
   }
 
 # CUSTOM FIELDS
