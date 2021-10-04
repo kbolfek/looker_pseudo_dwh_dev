@@ -74,24 +74,10 @@ view: d_book {
     sql: ${TABLE}.MATH_AREA ;;
   }
 
-  dimension_group: published_dt {
-    type: time
-    description: "Date of publishing the book (on Marketplace)"
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.PUBLISHED_DT ;;
-  }
 
   dimension: status {
     type: string
-    description: "Status of the book on Platform: 'IDENTIFIED','ORDERED','SCANNING','SCANNED','INGESTING','FAILED_INGESTION','INGESTED','APPROVED_INGESTION','PREPARED','ANNOTATING','ANNOTATED','CATEGORIZING','CATEGORIZED','CREATING','CREATED','APPROVED'"
+    description: "Status of the book on Platform: 'IDENTIFIED','ORDERED','SCANNING','SCANNED','INGESTING','FAILED_INGESTION','INGESTED','APPROVED_INGESTION','PREPARED','ANNOTATING','ANNOTATED','CATEGORIZING','CATEGORIZED','CREATING','PUBLISHED'(former 'CREATED' or 'APPROVED')"
     sql: ${TABLE}.STATUS ;;
   }
 
