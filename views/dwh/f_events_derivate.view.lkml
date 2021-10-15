@@ -1,22 +1,22 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
-explore: tbl_f_events_derivate {
+explore: f_events_derivate {
   hidden: yes
 
-  join: tbl_f_events_derivate__event_params {
+  join: f_events_derivate__event_params {
     view_label: "Tbl F Events Derivate: Event Params"
-    sql: LEFT JOIN UNNEST(${tbl_f_events_derivate.event_params}) as tbl_f_events_derivate__event_params ;;
+    sql: LEFT JOIN UNNEST(${f_events_derivate.event_params}) as tbl_f_events_derivate__event_params ;;
     relationship: one_to_many
   }
 
-  join: tbl_f_events_derivate__user_properties {
+  join: f_events_derivate__user_properties {
     view_label: "Tbl F Events Derivate: User Properties"
-    sql: LEFT JOIN UNNEST(${tbl_f_events_derivate.user_properties}) as tbl_f_events_derivate__user_properties ;;
+    sql: LEFT JOIN UNNEST(${f_events_derivate.user_properties}) as tbl_f_events_derivate__user_properties ;;
     relationship: one_to_many
   }
 }
 
 # The name of this view in Looker is "Tbl F Events Derivate"
-view: tbl_f_events_derivate {
+view: f_events_derivate {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: `photomath-dwh-dev.DWH.TBL_F_EVENTS_DERIVATE`
@@ -337,7 +337,7 @@ view: tbl_f_events_derivate {
 }
 
 # The name of this view in Looker is "Tbl F Events Derivate Event Params"
-view: tbl_f_events_derivate__event_params {
+view: f_events_derivate__event_params {
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
@@ -380,7 +380,7 @@ view: tbl_f_events_derivate__event_params {
 }
 
 # The name of this view in Looker is "Tbl F Events Derivate User Properties"
-view: tbl_f_events_derivate__user_properties {
+view: f_events_derivate__user_properties {
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 

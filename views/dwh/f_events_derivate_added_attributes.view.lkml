@@ -16,7 +16,7 @@
 #}
 
 # The name of this view in Looker is "Tbl F Events Derivate Added Attributes"
-view: tbl_f_events_derivate_added_attributes {
+view: f_events_derivate_added_attributes {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: `photomath-dwh-dev.DWH.TBL_F_EVENTS_DERIVATE_ADDED_ATTRIBUTES`

@@ -1,5 +1,5 @@
 # The name of this view in Looker is "Tbl M App Daily Kpi"
-view: tbl_m_app_daily_kpi {
+view: m_app_daily_kpi {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: `photomath-dwh-dev.DWH.TBL_M_APP_DAILY_KPI`

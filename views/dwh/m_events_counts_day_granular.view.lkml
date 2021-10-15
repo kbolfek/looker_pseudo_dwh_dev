@@ -1,5 +1,5 @@
 # The name of this view in Looker is "Tbl M Events Counts Day Granular"
-view: tbl_m_events_counts_day_granular {
+view: m_events_counts_day_granular {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: `photomath-dwh-dev.DWH.TBL_M_EVENTS_COUNTS_DAY_GRANULAR`
