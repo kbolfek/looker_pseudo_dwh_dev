@@ -1352,8 +1352,8 @@ view: m_events_counts_day_granular {
         WHEN {% parameter selected_event %} = 'animation_closed' THEN ${total_event_animation_closed_qty}
         WHEN {% parameter selected_event %} = 'bookpoint_result_show' THEN ${total_event_bookpoint_result_show_qty}
         WHEN {% parameter selected_event %} = 'plus_menu_click' THEN ${total_event_plus_menu_click_qty}
-        WHEN {% parameter selected_event %} = 'solution_show' THEN ${total_device_solution_show_qty}
-        WHEN {% parameter selected_event %} = 'solution_button_click' THEN ${total_device_solution_button_click_qty}
+        WHEN {% parameter selected_event %} = 'solution_show' THEN ${total_event_solution_show_qty}
+        WHEN {% parameter selected_event %} = 'solution_button_click' THEN ${total_event_solution_button_click_qty}
         WHEN {% parameter selected_event %} = 'animation_played' THEN ${total_event_animation_played_qty}
         WHEN {% parameter selected_event %} = 'why_click' THEN ${total_event_why_click_qty}
         WHEN {% parameter selected_event %} = 'step_how_to_click' THEN ${total_device_step_how_to_click_qty}
@@ -1446,8 +1446,8 @@ view: m_events_counts_day_granular {
         WHEN {% parameter selected_event_2 %} = 'animation_closed' THEN ${total_event_animation_closed_qty}
         WHEN {% parameter selected_event_2 %} = 'bookpoint_result_show' THEN ${total_event_bookpoint_result_show_qty}
         WHEN {% parameter selected_event_2 %} = 'plus_menu_click' THEN ${total_event_plus_menu_click_qty}
-        WHEN {% parameter selected_event_2 %} = 'solution_show' THEN ${total_device_solution_show_qty}
-        WHEN {% parameter selected_event_2 %} = 'solution_button_click' THEN ${total_device_solution_button_click_qty}
+        WHEN {% parameter selected_event_2 %} = 'solution_show' THEN ${total_event_solution_show_qty}
+        WHEN {% parameter selected_event_2 %} = 'solution_button_click' THEN ${total_event_solution_button_click_qty}
         WHEN {% parameter selected_event_2 %} = 'animation_played' THEN ${total_event_animation_played_qty}
         WHEN {% parameter selected_event_2 %} = 'why_click' THEN ${total_event_why_click_qty}
         WHEN {% parameter selected_event_2 %} = 'step_how_to_click' THEN ${total_event_step_how_to_click_qty}
