@@ -1239,6 +1239,40 @@ view: m_events_counts_day_granular {
 
 #----------------------------------------------------------------------------------------
 # CUSTOM PARAMETER EVENTS
+  parameter: timeframe_picker {
+    label: "Time Granularity"
+    default_value: "week"
+    type: string
+    allowed_value: {
+      label: "Week"
+      value: "week"
+    }
+    allowed_value: {
+      label: "Day"
+      value: "day"
+    }
+    allowed_value: {
+      label: "Month"
+      value: "month"
+    }
+    allowed_value: {
+      label: "Year"
+      value: "year"
+    }
+  }
+
+  dimension: time_dimension {
+    label_from_parameter: timeframe_picker
+    type: string
+    required_fields: [timeframe_picker]
+    sql:
+    CASE
+      WHEN {% parameter timeframe_picker %} = 'week' THEN CAST(${event_server_logged_week} as String)
+      WHEN {% parameter timeframe_picker %} = 'day' THEN CAST(${event_server_logged_date} as String)
+      WHEN {% parameter timeframe_picker %} = 'month' THEN CAST(${event_server_logged_month} as String)
+      WHEN {% parameter timeframe_picker %} = 'year' THEN CAST(${event_server_logged_year} as String)
+    END ;;
+  }
 
   parameter: selected_event {
     label: "Select Event Name"
