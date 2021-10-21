@@ -1,8 +1,7 @@
-# The name of this view in Looker is "Tbl M Events Counts Day Granular"
 view: m_events_counts_day_granular {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `photomath-dwh-dev.DWH.TBL_M_EVENTS_COUNTS_DAY_GRANULAR`
+  sql_table_name: `DWH.TBL_M_EVENTS_COUNTS_DAY_GRANULAR`
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -41,99 +40,9 @@ view: m_events_counts_day_granular {
     sql: ${TABLE}.COUNTRY_NAME ;;
   }
 
-  dimension: device_add_textbook_to_favorites_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_AddTextbookToFavorites_QTY ;;
-  }
-
-  dimension: device_animation_closed_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_AnimationClosed_QTY ;;
-  }
-
-  dimension: device_app_time_time_postitive_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_AppTime_Time_Postitive_QTY ;;
-  }
-
-  dimension: device_auth_registration_success_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_AuthRegistrationSuccess_QTY ;;
-  }
-
-  dimension: device_bookpoint_all_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_Bookpoint_ALL_QTY ;;
-  }
-
-  dimension: device_bookpoint_closed_users_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_BookpointClosedUsers_QTY ;;
-  }
-
-  dimension: device_bookpoint_dismiss_result_view_users_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_BookpointDismissResultViewUsers_QTY ;;
-  }
-
-  dimension: device_bookpoint_how_to_solve_users_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_BookpointHowToSolveUsers_QTY ;;
-  }
-
-  dimension: device_bookpoint_result_show_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_BookpointResultShow_QTY ;;
-  }
-
-  dimension: device_enable_notifications_popup_enabled_yes_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_EnableNotificationsPopup_Enabled_Yes_QTY ;;
-  }
-
   dimension: device_id {
     type: string
     sql: ${TABLE}.DEVICE_ID ;;
-  }
-
-  dimension: device_plus_menu_click_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_PlusMenuClick_QTY ;;
-  }
-
-  dimension: device_remove_textbook_from_favorites_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_RemoveTextbookFromFavorites_QTY ;;
-  }
-
-  dimension: device_solution_button_click_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_SolutionButtonClick_QTY ;;
-  }
-
-  dimension: device_solution_button_click_type_bookpoint_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_SolutionButtonClick_Type_Bookpoint_QTY ;;
-  }
-
-  dimension: device_solution_show_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_SolutionShow_QTY ;;
-  }
-
-  dimension: device_step_level_level_2_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_StepLevel_Level_2_QTY ;;
-  }
-
-  dimension: device_step_level_level_3_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_StepLevel_Level_3_QTY ;;
-  }
-
-  dimension: device_user_engagement_qty {
-    type: number
-    sql: ${TABLE}.DEVICE_user_engagement_QTY ;;
   }
 
   dimension: event_add_textbook_to_favorites_qty {
@@ -329,6 +238,11 @@ view: m_events_counts_day_granular {
     sql: ${TABLE}.EVENT_ShareStatus_QTY ;;
   }
 
+  dimension: event_solution_button_click_qty {
+    type: number
+    sql: ${TABLE}.EVENT_SolutionButtonClick_QTY ;;
+  }
+
   dimension: event_solution_button_click_type_animation_qty {
     type: number
     sql: ${TABLE}.EVENT_SolutionButtonClick_Type_Animation_QTY ;;
@@ -357,6 +271,11 @@ view: m_events_counts_day_granular {
   dimension: event_solution_helpful_answered_state_ok_qty {
     type: number
     sql: ${TABLE}.EVENT_SolutionHelpfulAnswered_State_Ok_QTY ;;
+  }
+
+  dimension: event_solution_show_qty {
+    type: number
+    sql: ${TABLE}.EVENT_SolutionShow_QTY ;;
   }
 
   dimension: event_solution_show_type_animation_qty {
@@ -417,16 +336,6 @@ view: m_events_counts_day_granular {
   dimension: first_touch_year_week {
     type: number
     sql: ${TABLE}.FIRST_TOUCH_YEAR_WEEK ;;
-  }
-
-  dimension: number_of_distinct_content_ids {
-    type: number
-    sql: ${TABLE}.NumberOfDistinctContentIDs ;;
-  }
-
-  dimension: number_of_distinct_task_ids {
-    type: number
-    sql: ${TABLE}.NumberOfDistinctTaskIDs ;;
   }
 
   dimension: operating_system {
@@ -509,226 +418,17 @@ view: m_events_counts_day_granular {
     sql: ${bookpoint_total_progress_step_qty} ;;
   }
 
-  measure: total_device_add_textbook_to_favorites_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_add_textbook_to_favorites_qty} ;;
-  }
-
-  measure: average_device_add_textbook_to_favorites_qty {
-    type: average
-    hidden: yes
-    sql: ${device_add_textbook_to_favorites_qty} ;;
-  }
-
-  measure: total_device_animation_closed_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_animation_closed_qty} ;;
-  }
-
-  measure: average_device_animation_closed_qty {
-    type: average
-    hidden: yes
-    sql: ${device_animation_closed_qty} ;;
-  }
-
-  measure: total_device_app_time_time_postitive_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_app_time_time_postitive_qty} ;;
-  }
-
-  measure: average_device_app_time_time_postitive_qty {
-    type: average
-    hidden: yes
-    sql: ${device_app_time_time_postitive_qty} ;;
-  }
-
-  measure: total_device_auth_registration_success_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_auth_registration_success_qty} ;;
-  }
-
-  measure: average_device_auth_registration_success_qty {
-    type: average
-    hidden: yes
-    sql: ${device_auth_registration_success_qty} ;;
-  }
-
-  measure: total_device_bookpoint_all_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_bookpoint_all_qty} ;;
-  }
-
-  measure: average_device_bookpoint_all_qty {
-    type: average
-    hidden: yes
-    sql: ${device_bookpoint_all_qty} ;;
-  }
-
-  measure: total_device_bookpoint_closed_users_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_bookpoint_closed_users_qty} ;;
-  }
-
-  measure: average_device_bookpoint_closed_users_qty {
-    type: average
-    hidden: yes
-    sql: ${device_bookpoint_closed_users_qty} ;;
-  }
-
-  measure: total_device_bookpoint_dismiss_result_view_users_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_bookpoint_dismiss_result_view_users_qty} ;;
-  }
-
-  measure: average_device_bookpoint_dismiss_result_view_users_qty {
-    type: average
-    hidden: yes
-    sql: ${device_bookpoint_dismiss_result_view_users_qty} ;;
-  }
-
-  measure: total_device_bookpoint_how_to_solve_users_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_bookpoint_how_to_solve_users_qty} ;;
-  }
-
-  measure: average_device_bookpoint_how_to_solve_users_qty {
-    type: average
-    hidden: yes
-    sql: ${device_bookpoint_how_to_solve_users_qty} ;;
-  }
-
-  measure: total_device_bookpoint_result_show_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_bookpoint_result_show_qty} ;;
-  }
-
-  measure: average_device_bookpoint_result_show_qty {
-    type: average
-    hidden: yes
-    sql: ${device_bookpoint_result_show_qty} ;;
-  }
-
-  measure: total_device_enable_notifications_popup_enabled_yes_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_enable_notifications_popup_enabled_yes_qty} ;;
-  }
-
-  measure: average_device_enable_notifications_popup_enabled_yes_qty {
-    type: average
-    hidden: yes
-    sql: ${device_enable_notifications_popup_enabled_yes_qty} ;;
-  }
-
-  measure: total_device_plus_menu_click_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_plus_menu_click_qty} ;;
-  }
-
-  measure: average_device_plus_menu_click_qty {
-    type: average
-    hidden: yes
-    sql: ${device_plus_menu_click_qty} ;;
-  }
-
-  measure: total_device_remove_textbook_from_favorites_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_remove_textbook_from_favorites_qty} ;;
-  }
-
-  measure: average_device_remove_textbook_from_favorites_qty {
-    type: average
-    hidden: yes
-    sql: ${device_remove_textbook_from_favorites_qty} ;;
-  }
-
-  measure: total_device_solution_button_click_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_solution_button_click_qty} ;;
-  }
-
-  measure: average_device_solution_button_click_qty {
-    type: average
-    hidden: yes
-    sql: ${device_solution_button_click_qty} ;;
-  }
-
-  measure: total_device_solution_button_click_type_bookpoint_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_solution_button_click_type_bookpoint_qty} ;;
-  }
-
-  measure: average_device_solution_button_click_type_bookpoint_qty {
-    type: average
-    hidden: yes
-    sql: ${device_solution_button_click_type_bookpoint_qty} ;;
-  }
-
-  measure: total_device_solution_show_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_solution_show_qty} ;;
-  }
-
-  measure: average_device_solution_show_qty {
-    type: average
-    hidden: yes
-    sql: ${device_solution_show_qty} ;;
-  }
-
-  measure: total_device_step_level_level_2_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_step_level_level_2_qty} ;;
-  }
-
-  measure: average_device_step_level_level_2_qty {
-    type: average
-    hidden: yes
-    sql: ${device_step_level_level_2_qty} ;;
-  }
-
-  measure: total_device_step_level_level_3_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_step_level_level_3_qty} ;;
-  }
-
-  measure: average_device_step_level_level_3_qty {
-    type: average
-    hidden: yes
-    sql: ${device_step_level_level_3_qty} ;;
-  }
-
-  measure: total_device_user_engagement_qty {
-    type: sum
-    hidden: yes
-    sql: ${device_user_engagement_qty} ;;
-  }
-
-  measure: average_device_user_engagement_qty {
-    type: average
-    hidden: yes
-    sql: ${device_user_engagement_qty} ;;
-  }
-
   measure: total_event_add_textbook_to_favorites_qty {
     type: sum
     hidden: yes
     sql: ${event_add_textbook_to_favorites_qty} ;;
+  }
+
+  measure: total_device_add_textbook_to_favorites_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_add_textbook_to_favorites_qty: ">0"]
   }
 
   measure: average_event_add_textbook_to_favorites_qty {
@@ -741,6 +441,13 @@ view: m_events_counts_day_granular {
     type: sum
     hidden: yes
     sql: ${event_animation_closed_qty} ;;
+  }
+
+  measure: total_device_animation_closed_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_animation_closed_qty: ">0"]
   }
 
   measure: average_event_animation_closed_qty {
@@ -765,6 +472,13 @@ view: m_events_counts_day_granular {
     type: sum
     hidden: yes
     sql: ${event_animation_played_qty} ;;
+  }
+
+  measure: total_device_animation_played_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_animation_played_qty: ">0"]
   }
 
   measure: average_event_animation_played_qty {
@@ -801,6 +515,13 @@ view: m_events_counts_day_granular {
     type: sum
     hidden: yes
     sql: ${event_auth_confirm_email_success_qty} ;;
+  }
+
+  measure: total_device_auth_confirm_email_success_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_auth_confirm_email_success_qty: ">0"]
   }
 
   measure: average_event_auth_confirm_email_success_qty {
@@ -911,6 +632,13 @@ view: m_events_counts_day_granular {
     sql: ${event_bookpoint_all_qty} ;;
   }
 
+  measure: total_device_bookpoint_all_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_bookpoint_all_qty: ">0"]
+  }
+
   measure: average_event_bookpoint_all_qty {
     type: average
     hidden: yes
@@ -921,6 +649,13 @@ view: m_events_counts_day_granular {
     type: sum
     hidden: yes
     sql: ${event_bookpoint_closed_qty} ;;
+  }
+
+  measure: total_device_bookpoint_closed_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_bookpoint_closed_qty: ">0"]
   }
 
   measure: average_event_bookpoint_closed_qty {
@@ -959,6 +694,13 @@ view: m_events_counts_day_granular {
     sql: ${event_bookpoint_result_show_content_solver_qty} ;;
   }
 
+  measure: total_device_bookpoint_result_show_content_solver_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_bookpoint_result_show_content_solver_qty: ">0"]
+  }
+
   measure: average_event_bookpoint_result_show_content_solver_qty {
     type: average
     hidden: yes
@@ -969,6 +711,13 @@ view: m_events_counts_day_granular {
     type: sum
     hidden: yes
     sql: ${event_bookpoint_result_show_qty} ;;
+  }
+
+  measure: total_device_bookpoint_result_show_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_bookpoint_result_show_qty: ">0"]
   }
 
   measure: average_event_bookpoint_result_show_qty {
@@ -983,6 +732,13 @@ view: m_events_counts_day_granular {
     sql: ${event_camera_button_error_qty} ;;
   }
 
+  measure: total_device_camera_button_error_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_camera_button_error_qty: ">0"]
+  }
+
   measure: average_event_camera_button_error_qty {
     type: average
     hidden: yes
@@ -995,6 +751,13 @@ view: m_events_counts_day_granular {
     sql: ${event_camera_qty} ;;
   }
 
+  measure: total_device_camera_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_camera_qty: ">0"]
+  }
+
   measure: average_event_camera_qty {
     type: average
     hidden: yes
@@ -1005,6 +768,13 @@ view: m_events_counts_day_granular {
     type: sum
     hidden: yes
     sql: ${event_camera_result_show_qty} ;;
+  }
+
+  measure: total_device_camera_result_show_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_camera_result_show_qty: ">0"]
   }
 
   measure: average_event_camera_result_show_qty {
@@ -1031,6 +801,13 @@ view: m_events_counts_day_granular {
     sql: ${event_editor_no_result_qty} ;;
   }
 
+  measure: total_device_editor_no_result_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_editor_no_result_qty: ">0"]
+  }
+
   measure: average_event_editor_no_result_qty {
     type: average
     hidden: yes
@@ -1041,6 +818,13 @@ view: m_events_counts_day_granular {
     type: sum
     hidden: yes
     sql: ${event_editor_result_show_qty} ;;
+  }
+
+  measure: total_device_editor_result_show_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_editor_result_show_qty: ">0"]
   }
 
   measure: average_event_editor_result_show_qty {
@@ -1077,6 +861,13 @@ view: m_events_counts_day_granular {
     type: sum
     hidden: yes
     sql: ${event_plus_menu_click_qty} ;;
+  }
+
+  measure: total_device_plus_menu_click_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_plus_menu_click_qty: ">0"]
   }
 
   measure: average_event_plus_menu_click_qty {
@@ -1145,6 +936,25 @@ view: m_events_counts_day_granular {
     sql: ${event_share_status_qty} ;;
   }
 
+  measure: total_event_solution_button_click_qty {
+    type: sum
+    hidden: yes
+    sql: ${event_solution_button_click_qty} ;;
+  }
+
+  measure: total_device_solution_button_click_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_solution_button_click_qty: ">0"]
+  }
+
+  measure: average_event_solution_button_click_qty {
+    type: average
+    hidden: yes
+    sql: ${event_solution_button_click_qty} ;;
+  }
+
   measure: total_event_solution_button_click_type_animation_qty {
     type: sum
     hidden: yes
@@ -1211,10 +1021,36 @@ view: m_events_counts_day_granular {
     sql: ${event_solution_helpful_answered_state_ok_qty} ;;
   }
 
+  measure: total_device_solution_helpful_answered_state_ok_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_solution_helpful_answered_state_ok_qty: ">0"]
+  }
+
   measure: average_event_solution_helpful_answered_state_ok_qty {
     type: average
     hidden: yes
     sql: ${event_solution_helpful_answered_state_ok_qty} ;;
+  }
+
+  measure: total_event_solution_show_qty {
+    type: sum
+    hidden: yes
+    sql: ${event_solution_show_qty} ;;
+  }
+
+  measure: total_device_solution_show_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_solution_show_qty: ">0"]
+  }
+
+  measure: average_event_solution_show_qty {
+    type: average
+    hidden: yes
+    sql: ${event_solution_show_qty} ;;
   }
 
   measure: total_event_solution_show_type_animation_qty {
@@ -1271,6 +1107,13 @@ view: m_events_counts_day_granular {
     sql: ${event_solver_hint_click_qty} ;;
   }
 
+  measure: total_device_solver_hint_click_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_solver_hint_click_qty: ">0"]
+  }
+
   measure: average_event_solver_hint_click_qty {
     type: average
     hidden: yes
@@ -1281,6 +1124,13 @@ view: m_events_counts_day_granular {
     type: sum
     hidden: yes
     sql: ${event_step_how_to_click_qty} ;;
+  }
+
+  measure: total_device_step_how_to_click_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_step_how_to_click_qty: ">0"]
   }
 
   measure: average_event_step_how_to_click_qty {
@@ -1319,6 +1169,13 @@ view: m_events_counts_day_granular {
     sql: ${event_user_engagement_qty} ;;
   }
 
+  measure: total_device_user_engagement_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_user_engagement_qty: ">0"]
+  }
+
   measure: average_event_user_engagement_qty {
     type: average
     hidden: yes
@@ -1329,6 +1186,13 @@ view: m_events_counts_day_granular {
     type: sum
     hidden: yes
     sql: ${event_why_click_qty} ;;
+  }
+
+  measure: total_device_why_click_qty {
+    type: count_distinct
+    hidden: yes
+    sql: ${device_id} ;;
+    filters: [event_why_click_qty: ">0"]
   }
 
   measure: average_event_why_click_qty {
@@ -1361,30 +1225,6 @@ view: m_events_counts_day_granular {
     sql: ${first_touch_year_week} ;;
   }
 
-  measure: total_number_of_distinct_content_ids {
-    type: sum
-    hidden: yes
-    sql: ${number_of_distinct_content_ids} ;;
-  }
-
-  measure: average_number_of_distinct_content_ids {
-    type: average
-    hidden: yes
-    sql: ${number_of_distinct_content_ids} ;;
-  }
-
-  measure: total_number_of_distinct_task_ids {
-    type: sum
-    hidden: yes
-    sql: ${number_of_distinct_task_ids} ;;
-  }
-
-  measure: average_number_of_distinct_task_ids {
-    type: average
-    hidden: yes
-    sql: ${number_of_distinct_task_ids} ;;
-  }
-
   measure: total_total_session_duration {
     type: sum
     hidden: yes
@@ -1395,5 +1235,181 @@ view: m_events_counts_day_granular {
     type: average
     hidden: yes
     sql: ${total_session_duration} ;;
+  }
+
+#----------------------------------------------------------------------------------------
+# CUSTOM PARAMETER EVENTS
+
+  parameter: selected_event {
+    label: "Select Event Name"
+    default_value: "user_engagement"
+    type: string
+    allowed_value: {
+      label: "Active Users"
+      value: "Active Users"
+    }
+    allowed_value: {
+      label: "AddTextbookToFavorites"
+      value: "add_textbook_to_favorites"
+    }
+    allowed_value: {
+      label: "AnimationClosed"
+      value: "animation_closed"
+    }
+    allowed_value: {
+      label: "BookpointResultShow"
+      value: "bookpoint_result_show"
+    }
+    allowed_value: {
+      label: "PlusMenuClick"
+      value: "plus_menu_click"
+    }
+    allowed_value: {
+      label: "SolutionShow"
+      value: "solution_show"
+    }
+    allowed_value: {
+      label: "SolutionButtonClick"
+      value: "solution_button_click"
+    }
+    allowed_value: {
+      label: "AnimationPlayed"
+      value: "animation_played"
+    }
+
+  }
+
+  measure: count_device_selected_event {
+    label_from_parameter: selected_event
+    type: number
+    required_fields: [selected_event]
+    sql:
+      CASE
+        WHEN {% parameter selected_event %} = 'Active Users' THEN ${total_device_user_engagement_qty}
+        WHEN {% parameter selected_event %} = 'add_textbook_to_favorites' THEN ${total_device_add_textbook_to_favorites_qty}
+        WHEN {% parameter selected_event %} = 'animation_closed' THEN ${total_device_animation_closed_qty}
+        WHEN {% parameter selected_event %} = 'bookpoint_result_show' THEN ${total_device_bookpoint_result_show_qty}
+        WHEN {% parameter selected_event %} = 'plus_menu_click' THEN ${total_device_plus_menu_click_qty}
+        WHEN {% parameter selected_event %} = 'solution_show' THEN ${total_device_solution_show_qty}
+        WHEN {% parameter selected_event %} = 'solution_button_click' THEN ${total_device_solution_button_click_qty}
+        WHEN {% parameter selected_event %} = 'animation_played' THEN ${total_device_animation_played_qty}
+
+      END
+    ;;
+  }
+
+  measure: count_event_selected_event {
+    label_from_parameter: selected_event
+    type: number
+    required_fields: [selected_event]
+    sql:
+      CASE
+        WHEN {% parameter selected_event %} = 'Active Users' THEN ${total_event_user_engagement_qty}
+        WHEN {% parameter selected_event %} = 'add_textbook_to_favorites' THEN ${total_event_add_textbook_to_favorites_qty}
+        WHEN {% parameter selected_event %} = 'animation_closed' THEN ${total_event_animation_closed_qty}
+        WHEN {% parameter selected_event %} = 'bookpoint_result_show' THEN ${total_event_bookpoint_result_show_qty}
+        WHEN {% parameter selected_event %} = 'plus_menu_click' THEN ${total_event_plus_menu_click_qty}
+        WHEN {% parameter selected_event %} = 'solution_show' THEN ${total_device_solution_show_qty}
+        WHEN {% parameter selected_event %} = 'solution_button_click' THEN ${total_device_solution_button_click_qty}
+        WHEN {% parameter selected_event %} = 'animation_played' THEN ${total_event_animation_played_qty}
+
+      END
+    ;;
+  }
+  measure: event_per_device_selected_event {
+    type: number
+    required_fields: [selected_event]
+    sql: ${count_event_selected_event}/${count_device_selected_event} ;;
+    value_format: "0.00"
+  }
+
+  parameter: selected_event_2 {
+    label: "Select Event Name 2"
+    default_value: "user_engagement"
+    type: string
+    allowed_value: {
+      label: "Active Users"
+      value: "Active Users"
+    }
+    allowed_value: {
+      label: "AddTextbookToFavorites"
+      value: "add_textbook_to_favorites"
+    }
+    allowed_value: {
+      label: "AnimationClosed"
+      value: "animation_closed"
+    }
+    allowed_value: {
+      label: "BookpointResultShow"
+      value: "bookpoint_result_show"
+    }
+    allowed_value: {
+      label: "PlusMenuClick"
+      value: "plus_menu_click"
+    }
+    allowed_value: {
+      label: "SolutionShow"
+      value: "solution_show"
+    }
+    allowed_value: {
+      label: "SolutionButtonClick"
+      value: "solution_button_click"
+    }
+    allowed_value: {
+      label: "AnimationPlayed"
+      value: "animation_played"
+    }
+
+  }
+
+  measure: count_device_selected_event_2 {
+    label_from_parameter: selected_event_2
+    type: number
+    required_fields: [selected_event_2]
+    sql:
+      CASE
+        WHEN {% parameter selected_event_2 %} = 'Active Users' THEN ${total_device_user_engagement_qty}
+        WHEN {% parameter selected_event_2 %} = 'add_textbook_to_favorites' THEN ${total_device_add_textbook_to_favorites_qty}
+        WHEN {% parameter selected_event_2 %} = 'animation_closed' THEN ${total_device_animation_closed_qty}
+        WHEN {% parameter selected_event_2 %} = 'bookpoint_result_show' THEN ${total_device_bookpoint_result_show_qty}
+        WHEN {% parameter selected_event_2 %} = 'plus_menu_click' THEN ${total_device_plus_menu_click_qty}
+        WHEN {% parameter selected_event_2 %} = 'solution_show' THEN ${total_device_solution_show_qty}
+        WHEN {% parameter selected_event_2 %} = 'solution_button_click' THEN ${total_device_solution_button_click_qty}
+        WHEN {% parameter selected_event_2 %} = 'animation_played' THEN ${total_device_animation_played_qty}
+
+      END
+    ;;
+  }
+
+  measure: count_event_selected_event_2 {
+    label_from_parameter: selected_event_2
+    type: number
+    required_fields: [selected_event_2]
+    sql:
+      CASE
+        WHEN {% parameter selected_event_2 %} = 'Active Users' THEN ${total_event_user_engagement_qty}
+        WHEN {% parameter selected_event_2 %} = 'add_textbook_to_favorites' THEN ${total_event_add_textbook_to_favorites_qty}
+        WHEN {% parameter selected_event_2 %} = 'animation_closed' THEN ${total_event_animation_closed_qty}
+        WHEN {% parameter selected_event_2 %} = 'bookpoint_result_show' THEN ${total_event_bookpoint_result_show_qty}
+        WHEN {% parameter selected_event_2 %} = 'plus_menu_click' THEN ${total_event_plus_menu_click_qty}
+        WHEN {% parameter selected_event_2 %} = 'solution_show' THEN ${total_device_solution_show_qty}
+        WHEN {% parameter selected_event_2 %} = 'solution_button_click' THEN ${total_device_solution_button_click_qty}
+        WHEN {% parameter selected_event_2 %} = 'animation_played' THEN ${total_event_animation_played_qty}
+
+      END
+    ;;
+  }
+  measure: event_per_device_selected_event_2 {
+    type: number
+    required_fields: [selected_event_2]
+    sql: ${count_event_selected_event_2}/${count_device_selected_event_2} ;;
+    value_format: "0.00"
+  }
+
+  measure: device_ratio_event_1_2 {
+    type: number
+    required_fields: [selected_event,selected_event_2]
+    sql: ${count_device_selected_event}/${count_device_selected_event_2} ;;
+    value_format: "0.00"
   }
 }
