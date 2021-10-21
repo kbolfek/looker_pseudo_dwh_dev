@@ -1276,7 +1276,14 @@ view: m_events_counts_day_granular {
       label: "AnimationPlayed"
       value: "animation_played"
     }
-
+    allowed_value: {
+      label: "WhyClick"
+      value: "why_click"
+    }
+    allowed_value: {
+      label: "StepHowToClick"
+      value: "step_how_to_click"
+    }
   }
 
   measure: count_device_selected_event {
@@ -1293,6 +1300,8 @@ view: m_events_counts_day_granular {
         WHEN {% parameter selected_event %} = 'solution_show' THEN ${total_device_solution_show_qty}
         WHEN {% parameter selected_event %} = 'solution_button_click' THEN ${total_device_solution_button_click_qty}
         WHEN {% parameter selected_event %} = 'animation_played' THEN ${total_device_animation_played_qty}
+        WHEN {% parameter selected_event %} = 'why_click' THEN ${total_device_why_click_qty}
+        WHEN {% parameter selected_event %} = 'step_how_to_click' THEN ${total_event_step_how_to_click_qty}
 
       END
     ;;
@@ -1312,6 +1321,8 @@ view: m_events_counts_day_granular {
         WHEN {% parameter selected_event %} = 'solution_show' THEN ${total_device_solution_show_qty}
         WHEN {% parameter selected_event %} = 'solution_button_click' THEN ${total_device_solution_button_click_qty}
         WHEN {% parameter selected_event %} = 'animation_played' THEN ${total_event_animation_played_qty}
+        WHEN {% parameter selected_event %} = 'why_click' THEN ${total_event_why_click_qty}
+        WHEN {% parameter selected_event %} = 'step_how_to_click' THEN ${total_device_step_how_to_click_qty}
 
       END
     ;;
@@ -1359,7 +1370,14 @@ view: m_events_counts_day_granular {
       label: "AnimationPlayed"
       value: "animation_played"
     }
-
+    allowed_value: {
+      label: "WhyClick"
+      value: "why_click"
+    }
+    allowed_value: {
+      label: "StepHowToClick"
+      value: "step_how_to_click"
+    }
   }
 
   measure: count_device_selected_event_2 {
@@ -1376,6 +1394,8 @@ view: m_events_counts_day_granular {
         WHEN {% parameter selected_event_2 %} = 'solution_show' THEN ${total_device_solution_show_qty}
         WHEN {% parameter selected_event_2 %} = 'solution_button_click' THEN ${total_device_solution_button_click_qty}
         WHEN {% parameter selected_event_2 %} = 'animation_played' THEN ${total_device_animation_played_qty}
+        WHEN {% parameter selected_event_2 %} = 'why_click' THEN ${total_device_why_click_qty}
+        WHEN {% parameter selected_event_2 %} = 'step_how_to_click' THEN ${total_device_step_how_to_click_qty}
 
       END
     ;;
@@ -1395,6 +1415,8 @@ view: m_events_counts_day_granular {
         WHEN {% parameter selected_event_2 %} = 'solution_show' THEN ${total_device_solution_show_qty}
         WHEN {% parameter selected_event_2 %} = 'solution_button_click' THEN ${total_device_solution_button_click_qty}
         WHEN {% parameter selected_event_2 %} = 'animation_played' THEN ${total_event_animation_played_qty}
+        WHEN {% parameter selected_event_2 %} = 'why_click' THEN ${total_event_why_click_qty}
+        WHEN {% parameter selected_event_2 %} = 'step_how_to_click' THEN ${total_event_step_how_to_click_qty}
 
       END
     ;;
