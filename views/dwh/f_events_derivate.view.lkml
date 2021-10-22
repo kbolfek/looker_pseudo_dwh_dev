@@ -19,7 +19,7 @@ explore: f_events_derivate {
 view: f_events_derivate {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `photomath-dwh-dev.DWH.TBL_F_EVENTS_DERIVATE`
+  sql_table_name: `DWH.TBL_F_EVENTS_DERIVATE`
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -181,8 +181,17 @@ view: f_events_derivate {
     sql: ${TABLE}.event_server_timestamp_offset ;;
   }
 
-  dimension: event_timestamp {
-    type: number
+  dimension_group: event_timestamp {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}.event_timestamp ;;
   }
 
@@ -263,77 +272,9 @@ view: f_events_derivate {
     sql: ${TABLE}.version ;;
   }
 
-  # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
-  # measures for numeric dimensions, but you can also add measures of many different types.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: count {
-    type: count
-    drill_fields: [event_name, device__mobile_model_name, device__mobile_brand_name, device__web_info__hostname, device__mobile_marketing_name]
-  }
 
-  # These sum and average measures are hidden by default.
-  # If you want them to show up in your explore, remove hidden: yes.
 
-  measure: total_device__time_zone_offset_seconds {
-    type: sum
-    hidden: yes
-    sql: ${device__time_zone_offset_seconds} ;;
-  }
-
-  measure: average_device__time_zone_offset_seconds {
-    type: average
-    hidden: yes
-    sql: ${device__time_zone_offset_seconds} ;;
-  }
-
-  measure: total_event_previous_timestamp {
-    type: sum
-    hidden: yes
-    sql: ${event_previous_timestamp} ;;
-  }
-
-  measure: average_event_previous_timestamp {
-    type: average
-    hidden: yes
-    sql: ${event_previous_timestamp} ;;
-  }
-
-  measure: total_event_server_timestamp_offset {
-    type: sum
-    hidden: yes
-    sql: ${event_server_timestamp_offset} ;;
-  }
-
-  measure: average_event_server_timestamp_offset {
-    type: average
-    hidden: yes
-    sql: ${event_server_timestamp_offset} ;;
-  }
-
-  measure: total_event_timestamp {
-    type: sum
-    hidden: yes
-    sql: ${event_timestamp} ;;
-  }
-
-  measure: average_event_timestamp {
-    type: average
-    hidden: yes
-    sql: ${event_timestamp} ;;
-  }
-
-  measure: total_user_first_touch_timestamp {
-    type: sum
-    hidden: yes
-    sql: ${user_first_touch_timestamp} ;;
-  }
-
-  measure: average_user_first_touch_timestamp {
-    type: average
-    hidden: yes
-    sql: ${user_first_touch_timestamp} ;;
-  }
 }
 
 # The name of this view in Looker is "Tbl F Events Derivate Event Params"
