@@ -338,6 +338,11 @@ view: m_events_counts_day_granular {
     sql: ${TABLE}.FIRST_TOUCH_YEAR_WEEK ;;
   }
 
+  dimension: week_diff {
+    type: number
+    sql: (EXTRACT(YEAR FROM ${event_server_logged_date})*100 + EXTRACT(WEEK FROM ${event_server_logged_date})) - first_touch_year_week;;
+  }
+
   dimension: operating_system {
     type: string
     sql: ${TABLE}.OPERATING_SYSTEM ;;
@@ -833,6 +838,12 @@ view: m_events_counts_day_granular {
     sql: ${event_editor_result_show_qty} ;;
   }
 
+  measure: total_device_number_of_solvables_qty {
+    type: count_distinct
+    hidden: yes
+    sql: CASE WHEN ${event_editor_result_show_qty} > 0 OR ${event_camera_result_show_qty} > 0 THEN ${device_id} ELSE NULL END ;;
+  }
+
   measure: total_event_enable_notifications_popup_enabled_yes_qty {
     type: sum
     hidden: yes
@@ -1236,6 +1247,15 @@ view: m_events_counts_day_granular {
     hidden: yes
     sql: ${total_session_duration} ;;
   }
+#----------------------------------------------------------------------------------------
+# CUSTOM MEASURES
+
+  measure: total_device_user_engagement_installation_cohort {
+    type: number
+    hidden: no
+    sql: MAX(${total_device_user_engagement_qty}) OVER (PARTITION BY ${first_touch_year_week}) ;;
+  }
+
 
 #----------------------------------------------------------------------------------------
 # CUSTOM PARAMETER EVENTS
@@ -1279,8 +1299,8 @@ view: m_events_counts_day_granular {
     default_value: "user_engagement"
     type: string
     allowed_value: {
-      label: "Active Users"
-      value: "Active Users"
+      label: "UserEngagement"
+      value: "user_engagement"
     }
     allowed_value: {
       label: "AddTextbookToFavorites"
@@ -1318,6 +1338,18 @@ view: m_events_counts_day_granular {
       label: "StepHowToClick"
       value: "step_how_to_click"
     }
+    allowed_value: {
+      label: "CameraResultShow"
+      value: "camera_result_show"
+    }
+    allowed_value: {
+      label: "EditorResultShow"
+      value: "editor_result_show"
+    }
+    allowed_value: {
+      label: "NumberOfSolvables"
+      value: "number_of_solvables"
+    }
   }
 
   measure: count_device_selected_event {
@@ -1326,7 +1358,7 @@ view: m_events_counts_day_granular {
     required_fields: [selected_event]
     sql:
       CASE
-        WHEN {% parameter selected_event %} = 'Active Users' THEN ${total_device_user_engagement_qty}
+        WHEN {% parameter selected_event %} = 'user_engagement' THEN ${total_device_user_engagement_qty}
         WHEN {% parameter selected_event %} = 'add_textbook_to_favorites' THEN ${total_device_add_textbook_to_favorites_qty}
         WHEN {% parameter selected_event %} = 'animation_closed' THEN ${total_device_animation_closed_qty}
         WHEN {% parameter selected_event %} = 'bookpoint_result_show' THEN ${total_device_bookpoint_result_show_qty}
@@ -1336,6 +1368,9 @@ view: m_events_counts_day_granular {
         WHEN {% parameter selected_event %} = 'animation_played' THEN ${total_device_animation_played_qty}
         WHEN {% parameter selected_event %} = 'why_click' THEN ${total_device_why_click_qty}
         WHEN {% parameter selected_event %} = 'step_how_to_click' THEN ${total_event_step_how_to_click_qty}
+        WHEN {% parameter selected_event %} = 'camera_result_show' THEN ${total_device_camera_result_show_qty}
+        WHEN {% parameter selected_event %} = 'editor_result_show' THEN ${total_device_editor_result_show_qty}
+        WHEN {% parameter selected_event %} = 'number_of_solvables' THEN ${total_device_number_of_solvables_qty}
 
       END
     ;;
@@ -1347,7 +1382,7 @@ view: m_events_counts_day_granular {
     required_fields: [selected_event]
     sql:
       CASE
-        WHEN {% parameter selected_event %} = 'Active Users' THEN ${total_event_user_engagement_qty}
+        WHEN {% parameter selected_event %} = 'user_engagement' THEN ${total_event_user_engagement_qty}
         WHEN {% parameter selected_event %} = 'add_textbook_to_favorites' THEN ${total_event_add_textbook_to_favorites_qty}
         WHEN {% parameter selected_event %} = 'animation_closed' THEN ${total_event_animation_closed_qty}
         WHEN {% parameter selected_event %} = 'bookpoint_result_show' THEN ${total_event_bookpoint_result_show_qty}
@@ -1356,7 +1391,10 @@ view: m_events_counts_day_granular {
         WHEN {% parameter selected_event %} = 'solution_button_click' THEN ${total_event_solution_button_click_qty}
         WHEN {% parameter selected_event %} = 'animation_played' THEN ${total_event_animation_played_qty}
         WHEN {% parameter selected_event %} = 'why_click' THEN ${total_event_why_click_qty}
-        WHEN {% parameter selected_event %} = 'step_how_to_click' THEN ${total_device_step_how_to_click_qty}
+        WHEN {% parameter selected_event %} = 'step_how_to_click' THEN ${total_event_step_how_to_click_qty}
+        WHEN {% parameter selected_event %} = 'camera_result_show' THEN ${total_event_camera_result_show_qty}
+        WHEN {% parameter selected_event %} = 'editor_result_show' THEN ${total_event_editor_result_show_qty}
+        WHEN {% parameter selected_event %} = 'number_of_solvables' THEN ${total_event_camera_result_show_qty} + ${total_event_editor_result_show_qty}
 
       END
     ;;
@@ -1373,8 +1411,8 @@ view: m_events_counts_day_granular {
     default_value: "user_engagement"
     type: string
     allowed_value: {
-      label: "Active Users"
-      value: "Active Users"
+      label: "UserEngagement"
+      value: "user_engagement"
     }
     allowed_value: {
       label: "AddTextbookToFavorites"
@@ -1412,6 +1450,19 @@ view: m_events_counts_day_granular {
       label: "StepHowToClick"
       value: "step_how_to_click"
     }
+    allowed_value: {
+      label: "CameraResultShow"
+      value: "camera_result_show"
+    }
+    allowed_value: {
+      label: "EditorResultShow"
+      value: "editor_result_show"
+    }
+    allowed_value: {
+      label: "NumberOfSolvables"
+      value: "number_of_solvables"
+    }
+
   }
 
   measure: count_device_selected_event_2 {
@@ -1420,7 +1471,7 @@ view: m_events_counts_day_granular {
     required_fields: [selected_event_2]
     sql:
       CASE
-        WHEN {% parameter selected_event_2 %} = 'Active Users' THEN ${total_device_user_engagement_qty}
+        WHEN {% parameter selected_event_2 %} = 'user_engagement' THEN ${total_device_user_engagement_qty}
         WHEN {% parameter selected_event_2 %} = 'add_textbook_to_favorites' THEN ${total_device_add_textbook_to_favorites_qty}
         WHEN {% parameter selected_event_2 %} = 'animation_closed' THEN ${total_device_animation_closed_qty}
         WHEN {% parameter selected_event_2 %} = 'bookpoint_result_show' THEN ${total_device_bookpoint_result_show_qty}
@@ -1430,6 +1481,9 @@ view: m_events_counts_day_granular {
         WHEN {% parameter selected_event_2 %} = 'animation_played' THEN ${total_device_animation_played_qty}
         WHEN {% parameter selected_event_2 %} = 'why_click' THEN ${total_device_why_click_qty}
         WHEN {% parameter selected_event_2 %} = 'step_how_to_click' THEN ${total_device_step_how_to_click_qty}
+        WHEN {% parameter selected_event_2 %} = 'camera_result_show' THEN ${total_device_camera_result_show_qty}
+        WHEN {% parameter selected_event_2 %} = 'editor_result_show' THEN ${total_device_editor_result_show_qty}
+        WHEN {% parameter selected_event_2 %} = 'number_of_solvables' THEN ${total_device_number_of_solvables_qty}
 
       END
     ;;
@@ -1441,7 +1495,7 @@ view: m_events_counts_day_granular {
     required_fields: [selected_event_2]
     sql:
       CASE
-        WHEN {% parameter selected_event_2 %} = 'Active Users' THEN ${total_event_user_engagement_qty}
+        WHEN {% parameter selected_event_2 %} = 'user_engagement' THEN ${total_event_user_engagement_qty}
         WHEN {% parameter selected_event_2 %} = 'add_textbook_to_favorites' THEN ${total_event_add_textbook_to_favorites_qty}
         WHEN {% parameter selected_event_2 %} = 'animation_closed' THEN ${total_event_animation_closed_qty}
         WHEN {% parameter selected_event_2 %} = 'bookpoint_result_show' THEN ${total_event_bookpoint_result_show_qty}
@@ -1451,6 +1505,9 @@ view: m_events_counts_day_granular {
         WHEN {% parameter selected_event_2 %} = 'animation_played' THEN ${total_event_animation_played_qty}
         WHEN {% parameter selected_event_2 %} = 'why_click' THEN ${total_event_why_click_qty}
         WHEN {% parameter selected_event_2 %} = 'step_how_to_click' THEN ${total_event_step_how_to_click_qty}
+        WHEN {% parameter selected_event_2 %} = 'camera_result_show' THEN ${total_event_camera_result_show_qty}
+        WHEN {% parameter selected_event_2 %} = 'editor_result_show' THEN ${total_event_editor_result_show_qty}
+        WHEN {% parameter selected_event_2 %} = 'number_of_solvables' THEN ${total_event_camera_result_show_qty} + ${total_event_editor_result_show_qty}
 
       END
     ;;
