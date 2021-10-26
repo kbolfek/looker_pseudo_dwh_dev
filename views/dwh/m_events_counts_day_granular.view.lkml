@@ -10,29 +10,60 @@ view: m_events_counts_day_granular {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Animation Max Progress Step Qty" in Explore.
 
-  dimension: animation_max_progress_step_qty {
-    type: number
-    sql: ${TABLE}.ANIMATION_MAX_PROGRESS_STEP_QTY ;;
+
+
+  dimension_group: event_server_logged {
+    type: time
+    timeframes: [
+      raw,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.EVENT_SERVER_LOGGED_DATE ;;
   }
 
-  dimension: animation_total_progress_step_qty {
+  dimension: event_year_week {
     type: number
-    sql: ${TABLE}.ANIMATION_TOTAL_PROGRESS_STEP_QTY ;;
+    sql: ${TABLE}.EVENT_YEAR_WEEK ;;
   }
 
-  dimension: app_language {
+  dimension_group: device_installation_dt {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.DEVICE_INSTALLATION_DT ;;
+  }
+
+  dimension: device_installation_year_week {
+    type: number
+    sql: ${TABLE}.DEVICE_INSTALLATION_YEAR_WEEK ;;
+  }
+
+  dimension: device_id {
     type: string
-    sql: ${TABLE}.APP_LANGUAGE ;;
+    sql: ${TABLE}.DEVICE_ID ;;
   }
 
-  dimension: bookpoint_max_progress_step_qty {
-    type: number
-    sql: ${TABLE}.BOOKPOINT_MAX_PROGRESS_STEP_QTY ;;
+  dimension: installation_id {
+    type: string
+    sql: ${TABLE}.INSTALLATION_ID ;;
   }
 
-  dimension: bookpoint_total_progress_step_qty {
-    type: number
-    sql: ${TABLE}.BOOKPOINT_TOTAL_PROGRESS_STEP_QTY ;;
+  dimension: user_account_id {
+    type: string
+    sql: ${TABLE}.USER_ACCOUNT_ID ;;
   }
 
   dimension: country_name {
@@ -40,10 +71,23 @@ view: m_events_counts_day_granular {
     sql: ${TABLE}.COUNTRY_NAME ;;
   }
 
-  dimension: device_id {
+  dimension: operating_system {
     type: string
-    sql: ${TABLE}.DEVICE_ID ;;
+    sql: ${TABLE}.OPERATING_SYSTEM ;;
   }
+
+  dimension: provider {
+    type: string
+    sql: ${TABLE}.PROVIDER ;;
+  }
+
+  dimension: app_language {
+    type: string
+    sql: ${TABLE}.APP_LANGUAGE ;;
+  }
+
+
+
 
   dimension: event_add_textbook_to_favorites_qty {
     type: number
@@ -205,24 +249,6 @@ view: m_events_counts_day_granular {
     sql: ${TABLE}.EVENT_ScreenShow_Screen_Authentication_QTY ;;
   }
 
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
-
-  dimension_group: event_server_logged {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.EVENT_SERVER_LOGGED_DATE ;;
-  }
-
   dimension: event_share_channel_qty {
     type: number
     sql: ${TABLE}.EVENT_ShareChannel_QTY ;;
@@ -328,40 +354,52 @@ view: m_events_counts_day_granular {
     sql: ${TABLE}.EVENT_WhyClick_QTY ;;
   }
 
-  dimension: event_year_week {
-    type: number
-    sql: ${TABLE}.EVENT_YEAR_WEEK ;;
-  }
-
-  dimension: first_touch_year_week {
-    type: number
-    sql: ${TABLE}.FIRST_TOUCH_YEAR_WEEK ;;
-  }
-
-  dimension: week_diff {
-    type: number
-    sql: (EXTRACT(YEAR FROM ${event_server_logged_date})*100 + EXTRACT(WEEK FROM ${event_server_logged_date})) - first_touch_year_week;;
-  }
-
-  dimension: operating_system {
-    type: string
-    sql: ${TABLE}.OPERATING_SYSTEM ;;
-  }
-
-  dimension: provider {
-    type: string
-    sql: ${TABLE}.PROVIDER ;;
-  }
-
   dimension: total_session_duration {
     type: number
     sql: ${TABLE}.TotalSessionDuration ;;
   }
 
-  dimension: user_account_id {
-    type: string
-    sql: ${TABLE}.USER_ACCOUNT_ID ;;
+  dimension: bookpoint_max_progress_step_qty {
+    type: number
+    sql: ${TABLE}.BOOKPOINT_MAX_PROGRESS_STEP_QTY ;;
   }
+
+  dimension: bookpoint_total_progress_step_qty {
+    type: number
+    sql: ${TABLE}.BOOKPOINT_TOTAL_PROGRESS_STEP_QTY ;;
+  }
+
+
+  dimension: animation_max_progress_step_qty {
+    type: number
+    sql: ${TABLE}.ANIMATION_MAX_PROGRESS_STEP_QTY ;;
+  }
+
+  dimension: animation_total_progress_step_qty {
+    type: number
+    sql: ${TABLE}.ANIMATION_TOTAL_PROGRESS_STEP_QTY ;;
+  }
+
+
+
+
+
+
+
+  ###################################
+
+
+
+
+
+
+  dimension: week_diff {
+    type: number
+    sql: (EXTRACT(YEAR FROM ${event_server_logged_date})*100 + EXTRACT(WEEK FROM ${event_server_logged_date})) - device_installation_year_week;;
+  }
+
+
+
 
   # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
   # measures for numeric dimensions, but you can also add measures of many different types.
@@ -1224,17 +1262,7 @@ view: m_events_counts_day_granular {
     sql: ${event_year_week} ;;
   }
 
-  measure: total_first_touch_year_week {
-    type: sum
-    hidden: yes
-    sql: ${first_touch_year_week} ;;
-  }
 
-  measure: average_first_touch_year_week {
-    type: average
-    hidden: yes
-    sql: ${first_touch_year_week} ;;
-  }
 
   measure: total_total_session_duration {
     type: sum
@@ -1247,13 +1275,18 @@ view: m_events_counts_day_granular {
     hidden: yes
     sql: ${total_session_duration} ;;
   }
+
+
+
+
+
 #----------------------------------------------------------------------------------------
 # CUSTOM MEASURES
 
   measure: total_device_user_engagement_installation_cohort {
     type: number
     hidden: no
-    sql: MAX(${total_device_user_engagement_qty}) OVER (PARTITION BY ${first_touch_year_week}) ;;
+    sql: MAX(${total_device_user_engagement_qty}) OVER (PARTITION BY ${device_installation_year_week}) ;;
   }
 
 
