@@ -1,25 +1,25 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
-explore: d_user_account {
-  hidden: yes
+#explore: d_user_account {
+#  hidden: yes
 
-  join: d_user_account__external_id {
-    view_label: "D User Account: External Id"
-    sql: LEFT JOIN UNNEST(${d_user_account.external_id}) as d_user_account__external_id ;;
-    relationship: one_to_many
-  }
+#  join: d_user_account__external_id {
+#    view_label: "D User Account: External Id"
+#    sql: LEFT JOIN UNNEST(${d_user_account.external_id}) as d_user_account__external_id ;;
+#    relationship: one_to_many
+#  }
 
-  join: d_user_account__user_account_parent_id {
-    view_label: "D User Account: User Account Parent Id"
-    sql: LEFT JOIN UNNEST(${d_user_account.user_account_parent_id}) as d_user_account__user_account_parent_id ;;
-    relationship: one_to_many
-  }
+#  join: d_user_account__user_account_parent_id {
+#    view_label: "D User Account: User Account Parent Id"
+#    sql: LEFT JOIN UNNEST(${d_user_account.user_account_parent_id}) as d_user_account__user_account_parent_id ;;
+#    relationship: one_to_many
+#  }
 
-  join: d_user_account__first_registered_on_device_id {
-    view_label: "D User Account: First Registered On Device Id"
-    sql: LEFT JOIN UNNEST(${d_user_account.first_registered_on_device_id}) as d_user_account__first_registered_on_device_id ;;
-    relationship: one_to_many
-  }
-}
+#   join: d_user_account__first_registered_on_device_id {
+#     view_label: "D User Account: First Registered On Device Id"
+#     sql: LEFT JOIN UNNEST(${d_user_account.first_registered_on_device_id}) as d_user_account__first_registered_on_device_id ;;
+#     relationship: one_to_many
+#   }
+# }
 
 # The name of this view in Looker is "D User Account"
 view: d_user_account {

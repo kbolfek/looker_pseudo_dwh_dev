@@ -20,3 +20,4 @@ include: "/views/dwh/*.view.lkml"                # include all views in the view
 # }
 
 explore: m_events_counts_day_granular {}
+explore: d_user_account{}
