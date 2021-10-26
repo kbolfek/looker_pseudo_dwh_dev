@@ -1,15 +1,15 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
 explore: f_events_derivate {
-  hidden: yes
+  #hidden: yes
 
   join: f_events_derivate__event_params {
-    view_label: "Tbl F Events Derivate: Event Params"
+    view_label: "F Events Derivate: Event Params"
     sql: LEFT JOIN UNNEST(${f_events_derivate.event_params}) as tbl_f_events_derivate__event_params ;;
     relationship: one_to_many
   }
 
   join: f_events_derivate__user_properties {
-    view_label: "Tbl F Events Derivate: User Properties"
+    view_label: "F Events Derivate: User Properties"
     sql: LEFT JOIN UNNEST(${f_events_derivate.user_properties}) as tbl_f_events_derivate__user_properties ;;
     relationship: one_to_many
   }
@@ -277,7 +277,7 @@ view: f_events_derivate {
 
 }
 
-# The name of this view in Looker is "Tbl F Events Derivate Event Params"
+# The name of this view in Looker is "F Events Derivate Event Params"
 view: f_events_derivate__event_params {
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
