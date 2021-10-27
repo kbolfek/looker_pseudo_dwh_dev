@@ -51,6 +51,11 @@ view: m_events_counts_day_granular {
     sql: ${TABLE}.DEVICE_INSTALLATION_YEAR_WEEK ;;
   }
 
+  dimension: device_installation_year_month {
+    type: number
+    sql: EXTRACT(YEAR FROM ${device_installation_dt_date})*100 + EXTRACT(MONTH FROM ${device_installation_dt_date}) ;;
+  }
+
   dimension: device_id {
     type: string
     sql: ${TABLE}.DEVICE_ID ;;
@@ -58,6 +63,7 @@ view: m_events_counts_day_granular {
 
   dimension: installation_id {
     type: string
+    hidden:  yes
     sql: ${TABLE}.INSTALLATION_ID ;;
   }
 
@@ -382,23 +388,14 @@ view: m_events_counts_day_granular {
 
 
 
-
-
-
-
   ###################################
-
-
-
 
 
 
   dimension: week_diff {
     type: number
-    sql: (EXTRACT(YEAR FROM ${event_server_logged_date})*100 + EXTRACT(WEEK FROM ${event_server_logged_date})) - device_installation_year_week;;
+    sql: (EXTRACT(YEAR FROM ${event_server_logged_date})*100 + EXTRACT(WEEK FROM ${event_server_logged_date})) - (EXTRACT(YEAR FROM ${device_installation_dt_date})*100 + EXTRACT(WEEK FROM ${device_installation_dt_date}));;
   }
-
-
 
 
   # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
@@ -1283,7 +1280,7 @@ view: m_events_counts_day_granular {
 #----------------------------------------------------------------------------------------
 # CUSTOM MEASURES
 
-  measure: total_device_user_engagement_installation_cohort {
+  measure: total_device_user_engagement_week_installation_cohort {
     type: number
     hidden: no
     sql: MAX(${total_device_user_engagement_qty}) OVER (PARTITION BY ${device_installation_year_week}) ;;
@@ -1326,6 +1323,7 @@ view: m_events_counts_day_granular {
       WHEN {% parameter timeframe_picker %} = 'year' THEN CAST(${event_server_logged_year} as String)
     END ;;
   }
+
 
   parameter: selected_event {
     label: "Select Event Name"
