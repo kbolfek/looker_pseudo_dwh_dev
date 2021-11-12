@@ -3,8 +3,8 @@ explore: d_math_task {
   hidden: yes
 
   join: d_math_task__clone_math_task_id {
-    view_label: "Tbl D Math Task: Clone Math Task Id"
-    sql: LEFT JOIN UNNEST(${d_math_task.clone_math_task_id}) as tbl_d_math_task__clone_math_task_id ;;
+    view_label: "D Math Task: Clone Math Task Id"
+    sql: LEFT JOIN UNNEST(${d_math_task.clone_math_task_id}) as d_math_task__clone_math_task_id ;;
     relationship: one_to_many
   }
 }
