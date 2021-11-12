@@ -1,8 +1,8 @@
-# The name of this view in Looker is "F Math Task Clone"
-view: f_math_task_clone {
+# The name of this view in Looker is "M Math Task Clone"
+view: m_math_task_clone {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `DWH.TBL_F_MATH_TASK_CLONE`
+  sql_table_name: `DWH.TBL_M_MATH_TASK_CLONE`
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
