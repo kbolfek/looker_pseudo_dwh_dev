@@ -19,25 +19,20 @@ explore: f_events_derivate_added_attributes {
 view: f_events_derivate_added_attributes {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `DWH.TBL_F_EVENTS_DERIVATE_ADDED_ATTRIBUTES`
+  sql_table_name: `DWH.TBL_F_APP_EVENTS`
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
+
 
   dimension: event_name {
     type: string
     sql: ${TABLE}.EVENT_NAME ;;
   }
 
-  dimension: event_server_logged_date_id {
-    type: string
-    sql: ${TABLE}.EVENT_SERVER_LOGGED_DATE_ID ;;
-  }
 
-  dimension_group: event_server_logged {
+  dimension_group: event_server_logged_date {
     type: time
     timeframes: [
       raw,
@@ -52,20 +47,6 @@ view: f_events_derivate_added_attributes {
     sql: ${TABLE}.EVENT_SERVER_LOGGED_DATE ;;
   }
 
-  dimension_group: event_client_logged {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.EVENT_CLIENT_LOGGED_DATE ;;
-  }
 
   dimension_group: event_client_logged_dt {
     type: time
@@ -134,14 +115,24 @@ view: f_events_derivate_added_attributes {
     sql: ${TABLE}.INSTALLATION_ID ;;
   }
 
-  dimension: operating_system {
+  dimension: platform {
     type: string
-    sql: ${TABLE}.OPERATING_SYSTEM ;;
+    sql: ${TABLE}.PLATFORM ;;
   }
 
   dimension: app_version {
     type: string
     sql: ${TABLE}.APP_VERSION ;;
+  }
+
+  dimension: subscription_id {
+    type: string
+    sql: ${TABLE}.SUBSCRIPTION_ID ;;
+  }
+
+  dimension: product_id {
+    type: string
+    sql: ${TABLE}.PRODUCT_ID ;;
   }
 
   dimension: provider {
@@ -194,9 +185,9 @@ view: f_events_derivate_added_attributes {
     sql: ${TABLE}.ECOMMERCE_TRANSACTION_ID ;;
   }
 
-  dimension: gmt_offset_seconds_qty {
+  dimension: gmt_offset_seconds {
     type: number
-    sql: ${TABLE}.GMT_OFFSET_SECONDS_QTY ;;
+    sql: ${TABLE}.GMT_OFFSET_SECONDS ;;
   }
 
   dimension: paywall_source {
@@ -224,6 +215,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__advertising_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.advertising_id ;;
     group_label: "Device"
@@ -231,6 +223,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__browser {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.browser ;;
     group_label: "Device"
@@ -238,6 +231,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__browser_version {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.browser_version ;;
     group_label: "Device"
@@ -245,6 +239,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__category {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.category ;;
     group_label: "Device"
@@ -252,6 +247,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__is_limited_ad_tracking {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.is_limited_ad_tracking ;;
     group_label: "Device"
@@ -259,6 +255,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__language {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.language ;;
     group_label: "Device"
@@ -266,6 +263,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__mobile_brand_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.mobile_brand_name ;;
     group_label: "Device"
@@ -273,6 +271,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__mobile_marketing_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.mobile_marketing_name ;;
     group_label: "Device"
@@ -280,6 +279,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__mobile_model_name {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.mobile_model_name ;;
     group_label: "Device"
@@ -287,6 +287,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__mobile_os_hardware_model {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.mobile_os_hardware_model ;;
     group_label: "Device"
@@ -294,6 +295,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__operating_system {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.operating_system ;;
     group_label: "Device"
@@ -301,6 +303,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__operating_system_version {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.operating_system_version ;;
     group_label: "Device"
@@ -308,6 +311,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__time_zone_offset_seconds {
+    hidden: yes
     type: number
     sql: ${TABLE}.device.time_zone_offset_seconds ;;
     group_label: "Device"
@@ -315,6 +319,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__vendor_id {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.vendor_id ;;
     group_label: "Device"
@@ -322,6 +327,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__web_info__browser {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.web_info.browser ;;
     group_label: "Device Web Info"
@@ -329,6 +335,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__web_info__browser_version {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.web_info.browser_version ;;
     group_label: "Device Web Info"
@@ -336,6 +343,7 @@ view: f_events_derivate_added_attributes {
   }
 
   dimension: device__web_info__hostname {
+    hidden: yes
     type: string
     sql: ${TABLE}.device.web_info.hostname ;;
     group_label: "Device Web Info"
@@ -361,9 +369,6 @@ view: f_events_derivate_added_attributes__event_params {
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Key" in Explore.
 
   dimension: key {
     type: string
@@ -404,9 +409,7 @@ view: f_events_derivate_added_attributes__user_properties {
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Key" in Explore.
+
 
   dimension: key {
     type: string
