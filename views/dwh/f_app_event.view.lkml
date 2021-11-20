@@ -1,25 +1,25 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
-explore: f_app_events {
+explore: f_app_event {
   hidden: yes
 
-  join: f_app_events__event_params {
-    view_label: "F App Events: Event Params"
-    sql: LEFT JOIN UNNEST(${f_app_events.event_params}) as f_app_events__event_params ;;
+  join: f_app_event__event_params {
+    view_label: "F App Event: Event Params"
+    sql: LEFT JOIN UNNEST(${f_app_event.event_params}) as f_app_event__event_params ;;
     relationship: one_to_many
   }
 
-  join: f_app_events__user_properties {
-    view_label: "F App Events: User Properties"
-    sql: LEFT JOIN UNNEST(${f_app_events.user_properties}) as f_app_events__user_properties ;;
+  join: f_app_event__user_properties {
+    view_label: "F App Event: User Properties"
+    sql: LEFT JOIN UNNEST(${f_app_event.user_properties}) as f_app_event__user_properties ;;
     relationship: one_to_many
   }
 }
 
-# The name of this view in Looker is "Tbl F App Events"
-view: f_app_events {
+# The name of this view in Looker is "Tbl F App Event"
+view: f_app_event {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `DWH.TBL_F_APP_EVENTS`
+  sql_table_name: `DWH.TBL_F_APP_EVENT`
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -383,8 +383,8 @@ view: f_app_events {
 
 }
 
-# The name of this view in Looker is "F App Events Event Params"
-view: f_app_events__event_params {
+# The name of this view in Looker is "F App Event Event Params"
+view: f_app_event__event_params {
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
@@ -397,11 +397,11 @@ view: f_app_events__event_params {
   # This field is hidden, which means it will not show up in Explore.
   # If you want this field to be displayed, remove "hidden: yes".
 
-  dimension: tbl_f_app_events__event_params {
+  dimension: tbl_f_app_event__event_params {
     type: string
     description: "A REPEATED RECORD of the parameters associated with this event."
     hidden: yes
-    sql: f_app_events__event_params ;;
+    sql: f_app_event__event_params ;;
   }
 
   dimension: value__string_value {
@@ -435,8 +435,8 @@ view: f_app_events__event_params {
 
 }
 
-# The name of this view in Looker is "F App Events User Properties"
-view: f_app_events__user_properties {
+# The name of this view in Looker is "F App Event User Properties"
+view: f_app_event__user_properties {
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
@@ -449,11 +449,11 @@ view: f_app_events__user_properties {
   # This field is hidden, which means it will not show up in Explore.
   # If you want this field to be displayed, remove "hidden: yes".
 
-  dimension: f_app_events__user_properties {
+  dimension: f_app_event__user_properties {
     type: string
     description: "A REPEATED RECORD of user properties set with the setUserProperty API. It´s a unique ID by app install. So as long as a user uses the same app instance (Installation) without reinstalling it, the INSTALLATION_ID stays the same"
     hidden: yes
-    sql: tbl_f_app_events__user_properties ;;
+    sql: tbl_f_app_event__user_properties ;;
   }
 
   dimension: value__string_value {
