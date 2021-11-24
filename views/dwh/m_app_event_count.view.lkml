@@ -91,44 +91,17 @@ view: m_app_event_count {
     sql: ${TABLE}.APP_LANGUAGE ;;
   }
 
-  dimension: country_id {
+  dimension: event_country_id {
     type: number
     description: "Foreign key to table D_COUNTRY. ID of he country from which events were reported based on IP address."
-    sql: ${TABLE}.COUNTRY_ID ;;
+    sql: ${TABLE}.EVENT_COUNTRY_ID ;;
   }
 
-  dimension: country_name {
+  dimension: event_country_name {
     type: string
     description: "Name of he country from which events were reported based on IP address."
-    sql: ${TABLE}.COUNTRY_NAME ;;
+    sql: ${TABLE}.EVENT_COUNTRY_NAME ;;
   }
-
-  dimension: subscription_id {
-    type: string
-    description: "ID of the subscription to the app."
-    sql: ${TABLE}.SUBSCRIPTION_ID ;;
-  }
-
-  dimension: product_id {
-    type: string
-    description: "Foreign key to table D_PRODUCT. ID of the product used within the subscription."
-    sql: ${TABLE}.PRODUCT_ID ;;
-  }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -144,7 +117,6 @@ view: m_app_event_count {
     description: "Number of TotalNumberOfSteps for AnimationClosed event."
     sql: ${TABLE}.ANIMATION_TOTAL_PROGRESS_STEP_QTY ;;
   }
-
 
 
   dimension: bookpoint_max_progress_step_qty {
