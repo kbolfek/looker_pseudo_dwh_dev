@@ -1,7 +1,7 @@
 view: m_events_counts_day_granular {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `DWH.TBL_M_EVENTS_COUNTS_DAY_GRANULAR`
+  sql_table_name: `DWH.TBL_M_APP_EVENT_COUNT`
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -12,7 +12,7 @@ view: m_events_counts_day_granular {
 
 
 
-  dimension_group: event_server_logged {
+  dimension_group: event_client_logged {
     type: time
     timeframes: [
       raw,
@@ -24,7 +24,7 @@ view: m_events_counts_day_granular {
     ]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.EVENT_SERVER_LOGGED_DATE ;;
+    sql: ${TABLE}.EVENT_CLIENT_LOGGED_DATE ;;
   }
 
   dimension: event_year_week {
@@ -72,14 +72,19 @@ view: m_events_counts_day_granular {
     sql: ${TABLE}.USER_ACCOUNT_ID ;;
   }
 
-  dimension: country_name {
+  dimension: event_country_id {
     type: string
-    sql: ${TABLE}.COUNTRY_NAME ;;
+    sql: ${TABLE}.EVENT_COUNTRY_ID ;;
   }
 
-  dimension: operating_system {
+  dimension: event_country_name {
     type: string
-    sql: ${TABLE}.OPERATING_SYSTEM ;;
+    sql: ${TABLE}.EVENT_COUNTRY_NAME ;;
+  }
+
+  dimension: platform {
+    type: string
+    sql: ${TABLE}.PLATFORM ;;
   }
 
   dimension: provider {
@@ -394,7 +399,7 @@ view: m_events_counts_day_granular {
 
   dimension: week_diff {
     type: number
-    sql: (EXTRACT(YEAR FROM ${event_server_logged_date})*100 + EXTRACT(WEEK FROM ${event_server_logged_date})) - (EXTRACT(YEAR FROM ${device_installation_dt_date})*100 + EXTRACT(WEEK FROM ${device_installation_dt_date}));;
+    sql: (EXTRACT(YEAR FROM ${event_client_logged_date})*100 + EXTRACT(WEEK FROM ${event_client_logged_date})) - (EXTRACT(YEAR FROM ${device_installation_dt_date})*100 + EXTRACT(WEEK FROM ${device_installation_dt_date}));;
   }
 
 
@@ -404,7 +409,7 @@ view: m_events_counts_day_granular {
 
   measure: count {
     type: count
-    drill_fields: [country_name]
+    drill_fields: [event_country_name]
   }
 
   # These sum and average measures are hidden by default.
@@ -1317,10 +1322,10 @@ view: m_events_counts_day_granular {
     required_fields: [timeframe_picker]
     sql:
     CASE
-      WHEN {% parameter timeframe_picker %} = 'week' THEN CAST(${event_server_logged_week} as String)
-      WHEN {% parameter timeframe_picker %} = 'day' THEN CAST(${event_server_logged_date} as String)
-      WHEN {% parameter timeframe_picker %} = 'month' THEN CAST(${event_server_logged_month} as String)
-      WHEN {% parameter timeframe_picker %} = 'year' THEN CAST(${event_server_logged_year} as String)
+      WHEN {% parameter timeframe_picker %} = 'week' THEN CAST(${event_client_logged_week} as String)
+      WHEN {% parameter timeframe_picker %} = 'day' THEN CAST(${event_client_logged_date} as String)
+      WHEN {% parameter timeframe_picker %} = 'month' THEN CAST(${event_client_logged_month} as String)
+      WHEN {% parameter timeframe_picker %} = 'year' THEN CAST(${event_client_logged_year} as String)
     END ;;
   }
 
