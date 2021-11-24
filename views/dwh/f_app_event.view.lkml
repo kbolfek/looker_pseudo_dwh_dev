@@ -30,7 +30,7 @@ view: f_app_event {
     sql: ${TABLE}.EVENT_NAME ;;
   }
 
-  dimension_group: event_server_logged_date {
+  dimension_group: event_server_logged {
     type: time
     description: "Date of server logging the event."
     timeframes: [

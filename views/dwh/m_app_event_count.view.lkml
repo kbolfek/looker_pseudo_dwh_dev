@@ -7,7 +7,7 @@ view: m_app_event_count {
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
-  dimension_group: event_client_logged_date {
+  dimension_group: event_client_logged {
     type: time
     description: "Date of server logging the event."
     timeframes: [
