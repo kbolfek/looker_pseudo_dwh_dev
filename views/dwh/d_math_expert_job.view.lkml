@@ -37,6 +37,12 @@ view: d_math_expert_job {
     sql: ${TABLE}.IS_PROMO ;;
   }
 
+  dimension: is_gold_standard_template {
+    type: yesno
+    description: "Indicates if the job is part of the golden standard"
+    sql: ${TABLE}.IS_GOLD_STANDARD_TEMPLATE ;;
+  }
+
   dimension: is_succeeded {
     type: yesno
     description: "Job is successfully done (passed or failed)"

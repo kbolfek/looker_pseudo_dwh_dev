@@ -1,24 +1,30 @@
-# The name of this view in Looker is "D Device Installation"
-view: d_device_installation {
+# The name of this view in Looker is "D Subscription State"
+view: d_subscription_state {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
-  sql_table_name: `DWH.TBL_D_DEVICE_INSTALLATION`
+  sql_table_name: `DWH.TBL_D_SUBSCRIPTION_STATE`
     ;;
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Device ID" in Explore.
+  dimension: subscription_id {
+    type: string
+    sql: ${TABLE}.SUBSCRIPTION_ID ;;
+  }
+
+  dimension: state {
+    type: string
+    sql: ${TABLE}.STATE ;;
+  }
+
+  dimension: product_id {
+    type: string
+    sql: ${TABLE}.PRODUCT_ID ;;
+  }
 
   dimension: device_id {
     type: string
     sql: ${TABLE}.DEVICE_ID ;;
-  }
-
-  dimension: installation_id {
-    type: string
-    sql: ${TABLE}.INSTALLATION_ID ;;
   }
 
   dimension: platform {
@@ -26,7 +32,12 @@ view: d_device_installation {
     sql: ${TABLE}.PLATFORM ;;
   }
 
-  dimension_group: device_installation_dt {
+  dimension: user_account_id {
+    type: string
+    sql: ${TABLE}.USER_ACCOUNT_ID ;;
+  }
+
+  dimension_group: start_dt {
     type: time
     timeframes: [
       raw,
@@ -37,41 +48,32 @@ view: d_device_installation {
       quarter,
       year
     ]
-    sql: ${TABLE}.DEVICE_INSTALLATION_DT ;;
+    sql: ${TABLE}.START_DT ;;
   }
 
-  dimension_group: first_event_client_logged_date {
+  dimension_group: expiration_dt {
     type: time
     timeframes: [
       raw,
+      time,
       date,
       week,
       month,
       quarter,
       year
     ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.FIRST_EVENT_CLIENT_LOGGED_DATE ;;
+    sql: ${TABLE}.EXPIRATION_DT ;;
   }
 
-  dimension_group: first_event_server_logged_date {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.FIRST_EVENT_SERVER_LOGGED_DATE ;;
+  dimension: is_active {
+    type: yesno
+    sql: ${TABLE}.IS_ACTIVE ;;
   }
+
 
   dimension_group: dwh_insert_dt {
-    hidden:  yes
+
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -86,7 +88,7 @@ view: d_device_installation {
   }
 
   dimension_group: dwh_update_dt {
-    hidden:  yes
+    hidden: yes
     type: time
     timeframes: [
       raw,
@@ -99,4 +101,5 @@ view: d_device_installation {
     ]
     sql: ${TABLE}.DWH_UPDATE_DT ;;
   }
+
 }
