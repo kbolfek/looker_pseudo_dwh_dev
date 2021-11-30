@@ -5,18 +5,21 @@ view: d_country {
   dimension: code_a2 {
     type: string
     description: "ISO 3166-1; Alpha-2 country code"
+    map_layer_name: countries
     sql: ${TABLE}.CODE_A2 ;;
   }
 
   dimension: code_a3 {
     type: string
     description: "ISO 3166-1; Alpha-3 country code"
+    map_layer_name: countries
     sql: ${TABLE}.CODE_A3 ;;
   }
 
   dimension: code_n1 {
     type: string
     description: "ISO 3166-1; Numeric-3 country code"
+    map_layer_name: countries
     sql: ${TABLE}.CODE_N1 ;;
   }
 
@@ -30,6 +33,7 @@ view: d_country {
   dimension: country_name {
     type: string
     description: "Name of the country"
+    map_layer_name: countries
     sql: ${TABLE}.COUNTRY_NAME ;;
   }
 

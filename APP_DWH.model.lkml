@@ -7,7 +7,7 @@ include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
-#explore: m_events_counts_day_granular {}
+explore: m_events_counts_day_granular {}
 
 explore: tbl_m_app_event_count {
   label: "Events Daily Summary"
@@ -18,6 +18,22 @@ explore: tbl_m_app_event_count {
     type: left_outer
     relationship: many_to_one
     sql_on: ${tbl_m_app_event_count.user_account_id} = ${tbl_d_user_account.user_account_id} ;;
+  }
+
+  join: d_country_user {
+    from: d_country
+    view_label: "User Country"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${tbl_d_user_account.country_id} = ${d_country_user.country_id};;
+  }
+
+  join: d_country_event {
+    from: d_country
+    view_label: "Event Country"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${tbl_m_app_event_count.event_country_id} = ${d_country_event.country_id};;
   }
 
   always_filter: {

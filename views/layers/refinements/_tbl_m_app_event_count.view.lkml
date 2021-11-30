@@ -7,8 +7,6 @@ view: +tbl_m_app_event_count {
   }
 
   dimension_group: event_client_logged {
-    type: time
-    description: "Date of server logging the event."
     timeframes: [
       raw,
       date,
@@ -18,9 +16,26 @@ view: +tbl_m_app_event_count {
       year,
       day_of_week
     ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.EVENT_CLIENT_LOGGED_DATE ;;
+  }
+
+  dimension_group: installation_to_event_logged_date_duration {
+    type: duration
+    sql_start: ${event_client_logged_date} ;;
+    sql_end: ${device_installation_dt_date} ;;
+    intervals: [
+      day,
+      week,
+      month,
+      year
+      ]
+  }
+
+  measure: total_number_of_installs {
+    group_label: "Users"
+    description: "Number of app installs (including reinstalls)"
+    type: count_distinct
+    sql: ${installation_id} ;;
+    drill_fields: [event_country_name, total_number_of_installs]
   }
 
   measure: total_number_of_users {
@@ -53,14 +68,22 @@ view: +tbl_m_app_event_count {
     sql: ${event_editor_result_show_qty} ;;
   }
 
-  dimension: number_of_installs_kpi {
-    #hidden: yes
-    sql: "kpi";;
-    html:
-      <div style="font-size:20px;">&#8615; Number of Installs <b> {{ total_number_of_users._rendered_value }} </b>
-      </div>
-      ;;
+  measure: total_user_engagement_events {
+    group_label: "Event Aggregates"
+    description: "Total number of user engagement events"
+    type: sum
+    sql: ${event_user_engagement_qty} ;;
   }
+
+  measure: number_of_active_users_in_week_0 {
+    type: count_distinct
+    sql: ${device_id};;
+    filters: [
+      event_app_time_qty: ">0",
+      weeks_installation_to_event_logged_date_duration: "0"
+      ]
+  }
+
 
 
 # # ALVARO's CONTENT
