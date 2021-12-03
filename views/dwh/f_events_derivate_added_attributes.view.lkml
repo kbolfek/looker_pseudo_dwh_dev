@@ -1,6 +1,6 @@
 # Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
 explore: f_events_derivate_added_attributes {
-  #hidden: yes
+  hidden: yes
 
   join: f_events_derivate_added_attributes__event_params {
     view_label: "F Events Derivate Added Attributes: Event Params"
