@@ -7,9 +7,13 @@ include: "/**/*.view.lkml"                 # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 
-explore: m_events_counts_day_granular {}
+explore: m_events_counts_day_granular {
+  hidden: yes
+}
 
 explore: tbl_m_app_event_count {
+  hidden: yes
+
   label: "Events Daily Summary"
   view_label: "Events Summary"
 

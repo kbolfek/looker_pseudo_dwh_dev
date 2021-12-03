@@ -1,21 +1,3 @@
-# Un-hide and use this explore, or copy the joins into another explore, to get all the fully nested relationships from this view
-explore: f_app_event {
-  hidden: yes
-
-  join: f_app_event__event_params {
-    view_label: "F App Event: Event Params"
-    sql: LEFT JOIN UNNEST(${f_app_event.event_params}) as f_app_event__event_params ;;
-    relationship: one_to_many
-  }
-
-  join: f_app_event__user_properties {
-    view_label: "F App Event: User Properties"
-    sql: LEFT JOIN UNNEST(${f_app_event.user_properties}) as f_app_event__user_properties ;;
-    relationship: one_to_many
-  }
-}
-
-# The name of this view in Looker is "Tbl F App Event"
 view: f_app_event {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
