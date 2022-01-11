@@ -41,6 +41,6 @@ explore: tbl_m_app_event_count {
   }
 
   always_filter: {
-    filters: [tbl_m_app_event_count.event_client_logged_date: "2021-01-01 00:00 to 2021-01-15 00:00"]
+    filters: [tbl_m_app_event_count.event_client_logged_date: "2021-01-01 00:00 to 2021-01-31 00:00"]
   }
 }
