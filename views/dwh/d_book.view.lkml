@@ -20,6 +20,7 @@ view: d_book {
     description: "Surrogate key of a book created by the source database"
     sql: ${TABLE}.BOOK_ID ;;
   }
+  #blakakak
 
   dimension: book_publisher_id {
     type: number
